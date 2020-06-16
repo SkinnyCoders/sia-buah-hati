@@ -19,7 +19,7 @@ class Auth extends CI_controller
         $this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Maaf, Password belum diisi!']);
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('v_tatausaha/v_login');
+            $this->load->view('v_tatausaha/v_login2');
         } else {
             //cek data for admin
             $user = $this->m_auth->cekUserAdmin($this->input->post('username', TRUE));
