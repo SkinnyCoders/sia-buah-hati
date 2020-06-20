@@ -2,10 +2,10 @@
 <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Sistem Informasi Pendaftaran <a href="https://adminlte.io">V 1.0</a>
+      Sistem Informasi Akademik <a href="https://adminlte.io">V 1.0</a>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020 SD KARITAS NANDAN
+    <strong>Copyright &copy; 2020 SD BUAH HATI CILACAP
 .</strong> All rights reserved.
   </footer>
 </div>

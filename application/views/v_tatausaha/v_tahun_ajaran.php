@@ -9,7 +9,7 @@
          </div><!-- /.col -->
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
-             <li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Dashboard</a></li>
+             <li class="breadcrumb-item"><a href="<?= base_url('tatausaha') ?>">Dashboard</a></li>
              <li class="breadcrumb-item active">Tahun Ajaran</li>
            </ol>
          </div><!-- /.col -->
@@ -104,7 +104,7 @@
                  </button>
                </div>
                <div class="modal-body">
-                 <form action="<?= base_url('admin/tahun_ajaran/update') ?>" method="POST">
+                 <form action="<?= base_url('tatausaha/tahun_ajaran/update') ?>" method="POST">
                    <div class="row">
                      <div class="col-md-6">
                        <div class="form-group">
@@ -183,7 +183,7 @@
      var dataId = this.id;
      $.ajax({
        type: "post",
-       url: "<?= base_url('admin/tahun_ajaran/update') ?>",
+       url: "<?= base_url('tatausaha/tahun_ajaran/update') ?>",
        data: {
          'id_get_update': dataId
        },
@@ -212,15 +212,15 @@
          if (isConfirm.value) {
            $.ajax({
              type: "post",
-             url: "<?= base_url() ?>admin/tahun_ajaran/delete/" + dataId,
+             url: "<?= base_url() ?>tatausaha/tahun_ajaran/delete/" + dataId,
              data: {
                'id_pengguna': dataId
              },
              success: function(respone) {
-               window.location.href = "<?= base_url('admin/tahun_ajaran') ?>";
+               window.location.href = "<?= base_url('tatausaha/tahun_ajaran') ?>";
              },
              error: function(request, error) {
-               window.location.href = "<?= base_url('admin/tahun_ajaran') ?>";
+               window.location.href = "<?= base_url('tatausaha/tahun_ajaran') ?>";
              },
            });
          } else {

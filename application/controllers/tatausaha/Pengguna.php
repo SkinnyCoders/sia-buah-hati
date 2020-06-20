@@ -11,7 +11,7 @@ class Pengguna extends CI_controller
     {
         parent::__construct();
         //login cek and authentication
-        getAuthAdmin();
+        getAuthTatausaha();
 
         //load whatever you want bitch!!
         $this->load->model('m_users');

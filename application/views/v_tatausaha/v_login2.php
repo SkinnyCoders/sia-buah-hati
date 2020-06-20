@@ -29,7 +29,7 @@
 }
 
 .bg-image {
-  background-image: url('https://res.cloudinary.com/mhmd/image/upload/v1555917661/art-colorful-contemporary-2047905_dxtao7.jpg');
+  background-image: url('https://image.freepik.com/free-vector/back-school-with-school-items-elements_3589-792.jpg');
   background-size: cover;
   background-position: center center;
 }
@@ -54,12 +54,12 @@
                         <div class="col-lg-10 col-xl-7 mx-auto">
                             <h3 class="display-4">Tata Usaha</h3>
                             <p class="text-muted mb-4">Silahkan Login, untuk mengakses sistem</p>
-                            <form>
+                            <form action="" method="POST">
                                 <div class="form-group mb-3">
-                                    <input id="inputEmail" type="username" placeholder="username" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputEmail" type="username" placeholder="username" name="username" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
                                 </div>
                                 <div class="form-group mb-5">
-                                    <input id="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <input id="inputPassword" type="password" placeholder="Password" name="password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                 </div>
                                 <!-- <div class="custom-control custom-checkbox mb-3">
                                     <input id="customCheck1" type="checkbox" checked class="custom-control-input">

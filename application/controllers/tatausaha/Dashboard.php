@@ -13,15 +13,14 @@ class Dashboard extends CI_controller
     {
         parent::__construct();
         //login cek and authentication
-        getAuthAdmin();
+        getAuthTatausaha();
         $this->load->model('m_admin');
     }
 
     public function index()
     {
-        $data['title'] = 'Dashboard Admin';
-        $data['total'] = $this->m_admin->getTotal();
-        getViews($data, 'v_admin/dashboard');
+        $data['title'] = 'Dashboard Tata Usaha';
+        getViews($data, 'v_tatausaha/dashboard');
     }
 
         //chart alumni berdasarkan status

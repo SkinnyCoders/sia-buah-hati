@@ -15,16 +15,16 @@ function getAuthGuru()
     }
 }
 
-function getAuthAdmin()
+function getAuthTatausaha()
 {
     $CI = &get_instance();
     if ($CI->session->userdata('is_login') !== 'punten') {
         $CI->session->set_flashdata('msg_failed', 'Maaf, Harus login terlebih dahulu!');
-        redirect('admin');
+        redirect('tatausaha');
         return false;
-    }elseif ($CI->session->userdata('nama_role') !== 'Admin') {
+    }elseif ($CI->session->userdata('nama_role') !== 'TU') {
         $CI->session->set_flashdata('msg_failed', 'Maaf, Anda tidak memiliki akses ke halaman!');
-        redirect('admin');
+        redirect('tatausaha');
         return false;
     }
 }

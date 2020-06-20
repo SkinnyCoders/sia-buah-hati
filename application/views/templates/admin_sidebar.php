@@ -6,7 +6,7 @@
       <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item">
-      <h3 class="text-header text-info text-bold my-auto ml-2">SEKOLAH DASAR KARITAS NANDAN</h3>
+      <h3 class="text-header text-info text-bold my-auto ml-2">SEKOLAH DASAR ISLAM TERPADU BUAH HATI CILACAP</h3>
     </li>
   </ul>
 
@@ -78,7 +78,7 @@
           </li> -->
         <?php if ($this->session->userdata('role') == 1) { ?>
           <li class="nav-item">
-            <a href="<?= base_url('admin/dashboard') ?>" class="nav-link <?= active('dashboard')?>">
+            <a href="<?= base_url('tatausaha/dashboard') ?>" class="nav-link <?= active('dashboard')?>">
               <i class="nav-icon fa fa-home"></i>
               <p>
                 Dashboard
@@ -87,7 +87,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/tenaga_kependidikan') ?>" class="nav-link <?= active('tenaga_kependidikan')?>">
+            <a href="<?= base_url('tatausaha/tenaga_kependidikan') ?>" class="nav-link <?= active('tenaga_kependidikan')?>">
               <i class="nav-icon fa fa-users"></i>
               <p>
                 Data GTK
@@ -95,7 +95,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/tahun_ajaran') ?>" class="nav-link <?= active('tahun_ajaran')?>">
+            <a href="<?= base_url('tatausaha/tahun_ajaran') ?>" class="nav-link <?= active('tahun_ajaran')?>">
               <i class="nav-icon fa fa-exclamation-circle"></i>
               <p>
                 Tahun Ajaran
@@ -103,7 +103,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/kelas') ?>" class="nav-link <?= active('kelas')?>">
+            <a href="<?= base_url('tatausaha/kelas') ?>" class="nav-link <?= active('kelas')?>">
               <i class="nav-icon fa fa-building"></i>
               <p>
                 Data Kelas
@@ -111,7 +111,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/mapel') ?>" class="nav-link <?= active('mapel')?>">
+            <a href="<?= base_url('tatausaha/semester') ?>" class="nav-link <?= active('semester')?>">
+              <i class="nav-icon fa fa-building"></i>
+              <p>
+                Data Semester
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('tatausaha/mapel') ?>" class="nav-link <?= active('mapel')?>">
               <i class="nav-icon fa fa-book"></i>
               <p>
                 Data Mapel
@@ -119,7 +127,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/pengguna') ?>" class="nav-link <?= active('pengguna')?>">
+            <a href="<?= base_url('tatausaha/pengguna') ?>" class="nav-link <?= active('pengguna')?>">
               <i class="nav-icon fa fa-user"></i>
               <p>
                 Pengguna

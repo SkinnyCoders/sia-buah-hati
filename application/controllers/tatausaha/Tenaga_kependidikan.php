@@ -11,7 +11,7 @@ class Tenaga_kependidikan extends CI_controller
     {
         parent::__construct();
         //login cek and authentication
-        getAuthAdmin();
+        getAuthTatausaha();
         $this->load->model('m_gtk');
     }
 
@@ -21,7 +21,7 @@ class Tenaga_kependidikan extends CI_controller
             'gtk' => $this->m_gtk->getAllGtk()
     	];
 
-    	getViews($data,'v_admin/v_guru');
+    	getViews($data,'v_tatausaha/v_guru');
     }
 
     public function tambah(){
@@ -43,7 +43,7 @@ class Tenaga_kependidikan extends CI_controller
 		$this->form_validation->set_rules('password1', 'Konfirmasi Password', 'required|matches[password]', ['required' => '{field} tidak boleh kosong', 'matches' => '{field} tidak sama']);
 
     	if ($this->form_validation->run() == FALSE) {
-    		getViews($data,'v_admin/v_add_guru');
+    		getViews($data,'v_tatausaha/v_add_guru');
     	}else{
             $tgl = $this->input->post('tgl_lahir', true);
             $tgl = DateTime::createFromFormat('m/d/Y', $tgl)->format('Y-m-d');

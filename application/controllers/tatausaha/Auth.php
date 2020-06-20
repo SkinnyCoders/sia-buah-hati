@@ -22,7 +22,7 @@ class Auth extends CI_controller
             $this->load->view('v_tatausaha/v_login2');
         } else {
             //cek data for admin
-            $user = $this->m_auth->cekUserAdmin($this->input->post('username', TRUE));
+            $user = $this->m_auth->cekUserTatausaha($this->input->post('username', TRUE));
             
             if (!empty($user)) {
                 if (password_verify($this->input->post('password'), $user['password'])) {
@@ -30,21 +30,21 @@ class Auth extends CI_controller
                         'is_login' => 'punten',
                         'nama' => $user['nama'],
                         'username' => $user['username'],
-                        'nama_role' => 'Admin',
+                        'nama_role' => 'TU',
                         'foto' => $user['foto'],
                         'role' => 1
                     ];
 
                     $this->session->set_userdata($data);
                     $this->session->set_flashdata('msg_success', 'Selamat, Anda berhasil login');
-                    redirect('admin/dashboard');
+                    redirect('tatausaha/dashboard');
                 } else {
                     $this->session->set_flashdata('msg_failed', 'Ups!, Password anda salah!');
-                    redirect('admin');
+                    redirect('tatausaha');
                 }
             } else {
                 $this->session->set_flashdata('msg_failed', 'Ups!, Akun anda belum terdaftar!');
-                redirect('admin');
+                redirect('tatausaha');
             }
         }
     }

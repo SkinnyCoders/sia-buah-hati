@@ -11,7 +11,7 @@ class Kelas extends CI_controller
     {
         parent::__construct();
         //login cek and authentication
-        getAuthAdmin();
+        getAuthTatausaha();
         $this->load->model('m_admin');
     }
 
@@ -21,7 +21,7 @@ class Kelas extends CI_controller
             'kelas' => $this->db->get('kelas')->result_array()
     	];
 
-    	getViews($data,'v_admin/v_kelas');
+    	getViews($data,'v_tatausaha/v_kelas');
     }
 
     public function tambah(){
@@ -30,7 +30,7 @@ class Kelas extends CI_controller
 
     	if ($this->form_validation->run() == FALSE) {
     		$this->session->set_flashdata('msg_failed', 'Maaf, data gagal ditambahkan');
-            redirect('admin/kelas');
+            redirect('tatausaha/kelas');
     	}else{
     		$data = [
     			'nama_kelas' => $this->input->post('kelas', true)
@@ -38,10 +38,10 @@ class Kelas extends CI_controller
 
     		if (insertData('kelas', $data)) {
     			$this->session->set_flashdata('msg_success', 'Selamat, data berhasil ditambahkan');
-                redirect('admin/kelas');
+                redirect('tatausaha/kelas');
     		}else{
     			$this->session->set_flashdata('msg_failed', 'Maaf, data gagal ditambahkan');
-                redirect('admin/kelas');
+                redirect('tatausaha/kelas');
     		}
     	}
     }
@@ -60,7 +60,7 @@ class Kelas extends CI_controller
 
             if ($this->form_validation->run() == FALSE) {
                 $this->session->set_flashdata('msg_failed', 'Maaf, data kelas gagal diperbarui');
-                redirect('admin/kelas');
+                redirect('tatausaha/kelas');
             }else{
                 $data = [
                     'nama_kelas' => $this->input->post('kelas', true)
@@ -68,10 +68,10 @@ class Kelas extends CI_controller
 
                 if ($this->db->update('kelas', $data, ['id_kelas' => $this->input->post('id')])) {
                     $this->session->set_flashdata('msg_success', 'Selamat, data berhasil diperbarui');
-                    redirect('admin/kelas');
+                    redirect('tatausaha/kelas');
                 }else{
                     $this->session->set_flashdata('msg_failed', 'Maaf, data gagal diperbarui');
-                    redirect('admin/kelas');
+                    redirect('tatausaha/kelas');
                 }
             }
     	}

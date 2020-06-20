@@ -40,7 +40,6 @@
                              <thead>
                                <tr>
                                  <th class="text-nowrap" style="width: 5%">No</th>
-                                 <th class="text-nowrap">Kode Mapel</th>
                                  <th class="text-nowrap">Nama Mapel</th>
                                  <th style="width: 15%">Aksi</th>
                                </tr>
@@ -52,9 +51,8 @@
                              ?>
                               <tr>
                                 <td><?=$no++?></td>
-                                <td><?php echo $m['kode_mapel'] ?></td>
                                 <td><?= ucwords($m['nama_mapel'])?></td>
-                                <td><a href="javascript:void(0)" data-toggle="modal" id="<?php echo $m['kode_mapel'] ?>" data-target="#modal-lg" class="btn btn-sm btn-primary mr-3 update"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" id="<?php echo $m['kode_mapel'] ?>" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></a></td>
+                                <td><a href="javascript:void(0)" data-toggle="modal" id="<?php echo $m['id_mapel'] ?>" data-target="#modal-lg" class="btn btn-sm btn-primary mr-3 update"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" id="<?php echo $m['id_mapel'] ?>" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></a></td>
                               </tr>
                              <?php endforeach; ?>
                              </tbody>
@@ -78,16 +76,9 @@
                    </div>
                    <div class="modal-body">
                          <!-- form start -->
-                      <form action="<?= base_url('admin/mapel/tambah') ?>" method="post" role="form">
+                      <form action="<?= base_url('tatausaha/mapel/tambah') ?>" method="post" role="form">
                       <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="kelas">Kode Mapel</label>
-                            <input type="text" class="form-control" name="kode" id="" placeholder="Masukkan Kode Mapel" value="<?php echo set_value('kode'); ?>">
-                            <small class="text-danger mt-2"><?= form_error('kode') ?></small>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <div class="form-group">
                             <label for="kelas">Nama Mapel</label>
                             <input type="text" class="form-control" name="mapel" id="" placeholder="Masukkan Nama Mapel" value="<?php echo set_value('mapel'); ?>">
@@ -112,28 +103,21 @@
                <div class="modal-dialog">
                  <div class="modal-content">
                    <div class="modal-header">
-                     <h4 class="modal-title">Edit <span id="nama2"></span></h4>
+                     <h4 class="modal-title">Edit Mapel <span id="nama2"></span></h4>
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                        <span aria-hidden="true">&times;</span>
                      </button>
                    </div>
                    <div class="modal-body">
                          <!-- form start -->
-                      <form action="<?= base_url('admin/mapel/update') ?>" method="post" role="form">
-                        <input type="hidden" name="id" id="id_kelas" value="">
+                      <form action="<?= base_url('tatausaha/mapel/update') ?>" method="post" role="form">
+                        <input type="hidden" name="id" id="id_mapel" value="">
                       <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="kelas">Kode Mapel</label>
-                            <input type="text" class="form-control" name="kode" id="kode_update" placeholder="Masukkan Nama Kelas" value="">
-                            <small class="text-danger mt-2"><?= form_error('kelas') ?></small>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <div class="form-group">
                             <label for="kelas">Nama Mapel</label>
                             <input type="text" class="form-control" name="mapel" id="mapel_update" placeholder="Masukkan Nama Kelas" value="">
-                            <small class="text-danger mt-2"><?= form_error('kelas') ?></small>
+                            <small class="text-danger mt-2"><?= form_error('mapel') ?></small>
                           </div>
                         </div>
                       </div>
@@ -184,15 +168,15 @@
      var dataId = this.id;
      $.ajax({
        type: "post",
-       url: "<?= base_url('admin/mapel/update') ?>",
+       url: "<?= base_url('tatausaha/mapel/update') ?>",
        data: {
          'id_get_update': dataId
        },
        dataType: "json",
        success: function(data) {
           $('#nama2').text(data.nama_mapel);     
-          $('#mapel_update').val(data.nama_mapel);
-          $('#kode_update').val(data.kode_mapel);  
+          $('#mapel_update').val(data.nama_mapel);  
+          $('#id_mapel').val(data.id_mapel);
        },
      });
    });
@@ -213,15 +197,15 @@
          if (isConfirm.value) {
            $.ajax({
              type: "post",
-             url: "<?= base_url() ?>admin/mapel/delete/" + dataId,
+             url: "<?= base_url() ?>tatausaha/mapel/delete/" + dataId,
              data: {
                'id_kelas': dataId
              },
              success: function(respone) {
-               window.location.href = "<?= base_url('admin/mapel') ?>";
+               window.location.href = "<?= base_url('tatausaha/mapel') ?>";
              },
              error: function(request, error) {
-               window.location.href = "<?= base_url('admin/mapel') ?>";
+               window.location.href = "<?= base_url('tatausaha/mapel') ?>";
              },
            });
          } else {

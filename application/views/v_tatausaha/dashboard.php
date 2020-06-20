@@ -28,7 +28,7 @@
             <!-- small box -->
             <div class="small-box bg-blue">
               <div class="inner">
-                <h3><?=$total[0]?></h3>
+                <h3>22</h3>
 
                 <p>Data Tenaga Kependidikan</p>
               </div>
@@ -43,7 +43,7 @@
             <!-- small box -->
             <div class="small-box bg-green">
               <div class="inner">
-                <h3><?=$total[2]?></h3>
+                <h3>32</h3>
 
                 <p>Mapel</p>
               </div>
@@ -58,7 +58,7 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
               <div class="inner">
-                <h3><?=$total[1]?></h3>
+                <h3>22</h3>
 
                 <p>Kelas</p>
               </div>

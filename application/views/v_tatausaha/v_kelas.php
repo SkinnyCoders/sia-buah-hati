@@ -75,7 +75,7 @@
                    </div>
                    <div class="modal-body">
                          <!-- form start -->
-                      <form action="<?= base_url('admin/kelas/tambah') ?>" method="post" role="form">
+                      <form action="<?= base_url('tatausaha/kelas/tambah') ?>" method="post" role="form">
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
@@ -109,7 +109,7 @@
                    </div>
                    <div class="modal-body">
                          <!-- form start -->
-                      <form action="<?= base_url('admin/kelas/update') ?>" method="post" role="form">
+                      <form action="<?= base_url('tatausaha/kelas/update') ?>" method="post" role="form">
                         <input type="hidden" name="id" id="id_kelas" value="">
                       <div class="row">
                         <div class="col-md-12">
@@ -167,7 +167,7 @@
      var dataId = this.id;
      $.ajax({
        type: "post",
-       url: "<?= base_url('admin/kelas/update') ?>",
+       url: "<?= base_url('tatausaha/kelas/update') ?>",
        data: {
          'id_get_update': dataId
        },
@@ -196,15 +196,15 @@
          if (isConfirm.value) {
            $.ajax({
              type: "post",
-             url: "<?= base_url() ?>admin/kelas/delete/" + dataId,
+             url: "<?= base_url() ?>tatausaha/kelas/delete/" + dataId,
              data: {
                'id_kelas': dataId
              },
              success: function(respone) {
-               window.location.href = "<?= base_url('admin/kelas') ?>";
+               window.location.href = "<?= base_url('tatausaha/kelas') ?>";
              },
              error: function(request, error) {
-               window.location.href = "<?= base_url('admin/kelas') ?>";
+               window.location.href = "<?= base_url('tatausaha/kelas') ?>";
              },
            });
          } else {

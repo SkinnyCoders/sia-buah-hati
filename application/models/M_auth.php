@@ -7,9 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_auth extends CI_Model
 {
 
-    public function cekUserAdmin($email){
+    public function cekUserTatausaha($email){
         $this->db->select('*');
-        $this->db->from('admin');
+        $this->db->from('tenaga_kependidikan');
         $this->db->where('username', $email);
         return $this->db->get()->row_array();
     }

@@ -9,8 +9,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?= base_url('admin')?>">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="<?= base_url('admin/tenaga_kependidikan')?>">Daftar GTK</a></li>
+              <li class="breadcrumb-item"><a href="<?= base_url('tatausaha')?>">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="<?= base_url('tatausaha/tenaga_kependidikan')?>">Daftar GTK</a></li>
               <li class="breadcrumb-item active">Tambah</li>
             </ol>
           </div><!-- /.col -->
@@ -28,7 +28,7 @@
             <!-- general form elements -->
             <div class="card card-default ">
               <div class="card-header">
-                <h3 class="card-title"><i class="fa fa-user-plus"></i> Tambah Alumni</h3>
+                <h3 class="card-title"><i class="fa fa-user-plus"></i> Tambah Tenaga Kependidikan</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -44,11 +44,12 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label >Status GTK</label>
-                                <select name="status" id="status" class="form-control select2bs4" data-placeholder="Pilih Status GTK">
+                                <label >Jabatan GTK</label>
+                                <select name="status" id="status" class="form-control select2bs4" data-placeholder="Pilih Jabatan GTK">
                                     <option></option>
                                     <option value="guru">Guru</option>
-                                    <option value="pegawai">Pegawai</option>
+                                    <option value="kepsek">Kepala Sekolah</option>
+                                    <option value="tatausaha">Tata Usaha</option>
                                 </select>
                                 <small class="text-danger mt-2"><?= form_error('status') ?></small>
                             </div>
@@ -58,16 +59,50 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="nip">NIP <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="nip" id="nip" placeholder="Masukkan NIP" value="<?php echo set_value('nip') ?>">
+                                <label for="nip">NUPTK <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="nip" id="nip" placeholder="Masukkan NUPTK" value="<?php echo set_value('nip') ?>">
                                 <small class="text-danger mt-2"><?= form_error('nip') ?></small>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="nik">NIK <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="nik" id="nik" placeholder="Masukkan NIK" value="<?php echo set_value('nik') ?>">
+                                <label for="nik">No SK <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="nik" id="nik" placeholder="Masukkan No SK" value="<?php echo set_value('nik') ?>">
                                 <small class="text-danger mt-2"><?= form_error('nik') ?></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label >Pendidikan Terakhir</label>
+                                <select name="jenjang" id="jenjang" class="form-control select2bs4" data-placeholder="Pilih Pendidikan Terakhir">
+                                    <option></option>
+                                    <option value="sd">Sekolah Dasar</option>
+                                    <option value="smp">Sekolah Menengah Pertama</option>
+                                    <option value="sma">Sekolah Menengah Atas</option>
+                                    <option value="d2">Diploma 2</option>
+                                    <option value="d3">Diploma 3</option>
+                                    <option value="s1">Sarajana 1</option>
+                                    <option value="magister">Magister</option>
+                                    <option value="doktor">Doktor</option>
+                                </select>
+                                <small class="text-danger mt-2"><?= form_error('status') ?></small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tamat Pendidikan <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="tamat_pendidikan" class="form-control float-right" placeholder="Pilih tanggal tamat pendidikan" id="datepicker4" value="<?php echo set_value('tamat_pendidikan') ?>">
+                                </div>
+                                <!-- /.input group -->
+                                <small class="text-danger mt-2"><?= form_error('tgl_lahir') ?></small>
                             </div>
                         </div>
                     </div>
@@ -133,6 +168,12 @@
 
                     <hr>
                   
+                    <div class="form-group">
+                        <label for="agama">Username <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Username" value="<?php echo set_value('username')?>">
+                        <small class="text-danger mt-2"><?= form_error('username') ?></small>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-6">
                         <div class="form-group">
@@ -186,7 +227,14 @@
           $('#datepicker1').datepicker({
               autoclose: true
           })
-      })
+      });
+
+      $(function() {
+          //Date picker
+          $('#datepicker4').datepicker({
+              autoclose: true
+          })
+      });
   </script>
 
   <script>
