@@ -10,7 +10,7 @@
                   <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
                           <li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Dashboard</a></li>
-                          <li class="breadcrumb-item active">Daftar Kelas</li>
+                          <li class="breadcrumb-item active">Daftar Semester</li>
                       </ol>
                   </div><!-- /.col -->
               </div><!-- /.row -->
@@ -43,18 +43,27 @@
                                  <th class="text-nowrap">Tanggal Mulai</th>
                                  <th class="text-nowrap">Tanggal Berakhir</th>
                                  <th class="text-nowrap">Tahun Ajaran</th>
-                                 <th style="width: 15%">Aksi</th>
+                                 <th style="width: 10%">Aksi</th>
                                </tr>
                              </thead>
                              <tbody>
+                             <?php
+                              $no = 1;
+                              foreach($semesters AS $s) :
+                                $tgl_mulai = DateTime::createFromFormat('Y-m-d', $s['tanggal_mulai'])->format('d F Y');
+                                $tgl_akhir = DateTime::createFromFormat('Y-m-d', $s['tanggal_akhir'])->format('d F Y');
+                             ?>
                                  <tr>
-                                     <td>1</td>
-                                     <td>Genap</td>
-                                     <td>2020-06-10</td>
-                                     <td>2020-06-10</td>
-                                     <td>2020/2021</td>
-                                     <td>2020-06-10</td>
+                                     <td><?=$no++?></td>
+                                     <td><?php echo ucwords($s['semester'])?></td>
+                                     <td><?=$tgl_mulai?></td>
+                                     <td><?=$tgl_akhir?></td>
+                                     <td><?=$s['tahun_mulai']?>/<?=$s['tahun_akhir']?></td>
+                                     <td><a href="javascript:void(0)" data-toggle="modal" id="<?php echo $s['id_semester'] ?>" data-target="#modal-lg" class="btn btn-sm btn-primary mr-3 update"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" id="<?php echo $s['id_semester'] ?>" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></a></td>
                                  </tr>
+                              <?php
+                                endforeach;
+                              ?>
                              </tbody>
                            </table>
                           </div>
@@ -146,36 +155,40 @@
              <!-- /.modal -->
 
               <div class="modal fade" id="modal-lg">
-               <div class="modal-dialog">
+               <div class="modal-dialog modal-lg">
                  <div class="modal-content">
                    <div class="modal-header">
-                     <h4 class="modal-title">Edit <span id="nama2"></span></h4>
+                     <h4 class="modal-title">Perbarui data semester</h4>
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                        <span aria-hidden="true">&times;</span>
                      </button>
                    </div>
                    <div class="modal-body">
                          <!-- form start -->
-                      <form action="<?= base_url('tatausaha/kelas/update') ?>" method="post" role="form">
-                        <input type="hidden" name="id" id="id_kelas" value="">
+                      <form action="<?= base_url('tatausaha/semester/update') ?>" method="post" role="form">
+                      <input type="hidden" id="id_semester" name="id">
                       <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="kelas">Nama Kelas</label>
-                            <input type="text" class="form-control" name="kelas" id="kelas_update" placeholder="Masukkan Nama Kelas" value="">
-                            <small class="text-danger mt-2"><?= form_error('kelas') ?></small>
-                          </div>
+                        <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="smstr">Pilih Semester</label>
+                            <select name="semester" id="semester_update" class="form-control select2bs4" data-placeholder="Pilih Mata Pelajaran"> 
+                                <option></option>
+                                <option value="genap">Genap</option>
+                                <option value="ganjil">Ganjil</option>
+                                </select>
+                                <small class="text-danger mt-2"><?= form_error('mapel') ?></small>
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Lahir <span class="text-danger">*</span></label>
+                                <label for="exampleInputEmail1">Tanggal Mulai <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="tgl_lahir" class="form-control float-right" placeholder="Pilih tanggal" id="datepicker1" value="<?php echo set_value('tanggal_lahir') ?>">
+                                    <input type="text" name="tgl_mulai" class="form-control float-right tgl_1" placeholder="Pilih tanggal" id="datepicker3" value="<?php echo set_value('tanggal_lahir') ?>">
                                 </div>
                                 <!-- /.input group -->
                                 <small class="text-danger mt-2"><?= form_error('tgl_lahir') ?></small>
@@ -183,17 +196,29 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Lahir <span class="text-danger">*</span></label>
+                                <label for="exampleInputEmail1">Tanggal Akhir <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="tgl_lahir" class="form-control float-right" placeholder="Pilih tanggal" id="datepicker2" value="<?php echo set_value('tanggal_lahir') ?>">
+                                    <input type="text" name="tgl_akhir" class="form-control float-right tgl_2" placeholder="Pilih tanggal" id="datepicker4" value="<?php echo set_value('tgl_akhir') ?>">
                                 </div>
                                 <!-- /.input group -->
                                 <small class="text-danger mt-2"><?= form_error('tgl_lahir') ?></small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="tahun_ajaran">Pilih Tahun Ajaran</label>
+                            <select name="tahun_ajaran" id="tahun_ajaran-update" class="form-control select2bs4" data-placeholder="Pilih Tahun Ajaran"> 
+                                <option></option>
+                                <?php foreach($tahun_ajaran AS $t) :?>
+                                <option value="<?=$t['id_tahun_ajaran']?>"><?=$t['tahun_mulai']?>/<?=$t['tahun_akhir']?></option>
+                                <?php endforeach; ?>
+                                </select>
+                                <small class="text-danger mt-2"><?= form_error('mapel') ?></small>
                             </div>
                         </div>
                       </div>
@@ -236,6 +261,14 @@
           $('#datepicker2').datepicker({
               autoclose: true
           });
+
+          $('#datepicker3').datepicker({
+              autoclose: true
+          });
+
+          $('#datepicker4').datepicker({
+              autoclose: true
+          });
     });
   </script>
 
@@ -257,15 +290,17 @@
      var dataId = this.id;
      $.ajax({
        type: "post",
-       url: "<?= base_url('tatausaha/kelas/update') ?>",
+       url: "<?= base_url('tatausaha/semester/update') ?>",
        data: {
          'id_get_update': dataId
        },
        dataType: "json",
        success: function(data) {
-          $('#nama2').text(data.nama_kelas);     
-          $('#kelas_update').val(data.nama_kelas);
-          $('#id_kelas').val(data.id_kelas);  
+          $('#id_semester').val(data.id);     
+          $('#semester_update').val(data.semester).change();
+          $('#tahun_ajaran-update').val(data.tahun_ajaran).change();  
+          $('.tgl_1').val(data.tanggal_mulai);
+          $('.tgl_2').val(data.tanggal_akhir);
        },
      });
    });
@@ -274,8 +309,8 @@
      e.preventDefault();
      var dataId = this.id;
      Swal.fire({
-       title: 'Hapus Data Kelas',
-       text: "Apakah anda yakin ingin menghapus data Kelas ini?",
+       title: 'Hapus Data Semester',
+       text: "Apakah anda yakin ingin menghapus data Semester ini?",
        type: "warning",
        showCancelButton: true,
        confirmButtonColor: '#3085d6',
@@ -286,15 +321,15 @@
          if (isConfirm.value) {
            $.ajax({
              type: "post",
-             url: "<?= base_url() ?>tatausaha/kelas/delete/" + dataId,
+             url: "<?= base_url() ?>tatausaha/semester/delete/" + dataId,
              data: {
                'id_kelas': dataId
              },
              success: function(respone) {
-               window.location.href = "<?= base_url('tatausaha/kelas') ?>";
+               window.location.href = "<?= base_url('tatausaha/semester') ?>";
              },
              error: function(request, error) {
-               window.location.href = "<?= base_url('tatausaha/kelas') ?>";
+               window.location.href = "<?= base_url('tatausaha/semester') ?>";
              },
            });
          } else {
