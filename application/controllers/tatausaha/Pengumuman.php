@@ -47,6 +47,56 @@ class Pengumuman extends CI_controller
         }
     }
 
+    public function update(){
+        if(isset($_POST['id_get_update']) && !empty($_POST['id_get_update'])){
+            $id = $_POST['id_get_update'];
+            $data = $this->db->get_where('pengumuman', ['id_pengumuman' => $id])->row_array();
+
+            echo json_encode($data);
+        }elseif(isset($_POST['simpan'])){
+            $id = $this->input->post('id');
+            $data_lama =  $this->db->get_where('pengumuman', ['id_pengumuman' => $id])->row_array();
+
+            if (!empty($_FILES['foto']['name'])) {
+                //do upload for new image
+                $foto = $this->_uploadFile();
+
+                //deleting old image
+                if ($foto && $data_lama['foto'] !== null) {
+                    unlink('assets/img/pengumuman/' . $data_lama['foto']);
+                }
+            } else {
+                $foto = $data_lama['foto'];
+            }
+
+            $data = [
+                'id_gtk' => $this->input->post('id_gtk'),
+                'konten' => $this->input->post('konten'),
+                'gambar' => $foto
+            ];
+
+            if ($this->db->update('pengumuman', $data, ['id_pengumuman' => $id])) {
+    			$this->session->set_flashdata('msg_success', 'Selamat, data berhasil diperbarui');
+                redirect('tatausaha/dashboard');
+    		}else{
+    			$this->session->set_flashdata('msg_failed', 'Maaf, data gagal diperbarui');
+                redirect('tatausaha/dashboard');
+    		}
+        }
+    }
+
+    public function hapus($id){
+        $delete = $this->db->delete('pengumuman', ['id_pengumuman' => $id]);
+
+        if ($delete) {
+    		$this->session->set_flashdata('msg_success', 'Selamat, data berhasil dihapus');
+    		http_response_code(200);
+    	}else{
+    		$this->session->set_flashdata('msg_failed', 'Selamat, data gagal dihapus');
+    		http_response_code(404);
+    	}
+    }
+
 
     private function _uploadFile()
     {

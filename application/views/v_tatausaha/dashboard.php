@@ -80,11 +80,20 @@
                     <?php
                       endif;
                     ?>
+                    <?php
+                    if($p['id_gtk'] == $this->session->userdata('id_gtk')) :
+                    ?>
+                    <div class="row mt-3">
+                      <div class="col-md-12">
+                      <a href="javascript:void(0)" id="<?=$p['id_pengumuman']?>" class="btn btn-xs btn-danger btn-pulse float-right delete"><i class="fa fa-times"> hapus</i></a>
+                      <a href="javascript:void(0)" id="<?=$p['id_pengumuman']?>" data-toggle="modal" data-target="#modalEdit" class="btn btn-xs btn-success float-right update mr-2"><i class="fa fa-edit"> edit</i></a>
+                      </div>
+                    </div>
+                    <?php endif; ?>
                   </div>
                 </div>
                 <hr>
                 <?php
-                
                   endforeach;
                 ?>
               </div>
@@ -92,6 +101,43 @@
           </div>
         </div>
         <!-- /.row -->
+
+        <div class="modal fade" id="modalEdit">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Perbarui Pengumuman <span id="nama2"></span></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              <!-- form start -->
+                <form action="<?= base_url('tatausaha/pengumuman/update') ?>" method="post" role="form" enctype="multipart/form-data">
+                  <input type="hidden" name="id" id="id_pengumuman" value="">
+                  <div class="row">
+                  <input type="hidden" name="id_gtk" value="<?=$this->session->userdata('id_gtk')?>">
+                  <div class="col-md-8">
+                  <div class="form-group">
+                    <textarea style="width: 100%; height:200px;" class="form-control" name="konten" id="konten_update" placeholder="Tulis Pengumuman"></textarea>
+                  </div>
+                  </div>
+                  <div class="col-md-4">
+                  <input type="file" name="foto" class="dropifyUpdate" data-min-height="400">
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="modal-footer justify-content-between">
+                <button type="submit" name="simpan" class="btn btn-primary">Perbarui</button>
+                </form>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -115,6 +161,29 @@
   <script>
   $(document).ready(function(){
     $('.dropify').dropify({
+      messages: {
+          default: 'Drag atau drop untuk memilih gambar',
+          replace: 'Ganti',
+          remove:  'Hapus',
+          error:   'error'
+      }
+    });
+  })
+
+  $('.update').on('click', function() {
+     var dataId = this.id;
+     $.ajax({
+       type: "post",
+       url: "<?= base_url('tatausaha/pengumuman/update') ?>",
+       data: {
+         'id_get_update': dataId
+       },
+       dataType: "json",
+       success: function(data) {
+          $('#konten_update').text(data.konten);     
+          $('#id_pengumuman').val(data.id_pengumuman);
+          $('.dropifyUpdate').dropify({
+            defaultFile: "<?=base_url('assets/img/pengumuman/')?>"+data.gambar,
             messages: {
                 default: 'Drag atau drop untuk memilih gambar',
                 replace: 'Ganti',
@@ -122,5 +191,41 @@
                 error:   'error'
             }
         });
-  })
+       },
+     });
+   });
+
+
+  $('.delete').on('click', function(e) {
+     e.preventDefault();
+     var dataId = this.id;
+     Swal.fire({
+       title: 'Hapus Data Pengumuman',
+       text: "Apakah anda yakin ingin menghapus data pengumuman ini?",
+       type: "warning",
+       showCancelButton: true,
+       confirmButtonColor: '#3085d6',
+       cancelButtonColor: '#d33',
+       confirmButtonText: 'Ya, Hapus!'
+     }).then(
+       function(isConfirm) {
+         if (isConfirm.value) {
+           $.ajax({
+             type: "post",
+             url: "<?= base_url() ?>tatausaha/pengumuman/hapus/" + dataId,
+             data: {
+               'id_kelas': dataId
+             },
+             success: function(respone) {
+               window.location.href = "<?= base_url('tatausaha/dashboard') ?>";
+             },
+             error: function(request, error) {
+               window.location.href = "<?= base_url('tatausaha/dashboard') ?>";
+             },
+           });
+         } else {
+           swal("Cancelled", "Your imaginary file is safe :)", "error");
+         }
+       });
+   });
   </script>0
