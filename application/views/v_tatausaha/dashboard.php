@@ -63,12 +63,12 @@
                     ?>
                     <div class="row mt-3">
                       <div class="col-md-6">
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModalCenter"><img style="width: 100%; border-radius:5px;" src="<?=base_url('assets/img/pengumuman/'.$p['gambar'])?>" alt=""></a>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModalCenter<?=$p['id_pengumuman']?>"><img style="width: 100%; border-radius:5px;" src="<?=base_url('assets/img/pengumuman/'.$p['gambar'])?>" alt=""></a>
                       </div>
                     </div>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="exampleModalCenter<?=$p['id_pengumuman']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                       <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                         <div class="modal-content">
                           <div class="modal-body">
@@ -84,6 +84,7 @@
                 </div>
                 <hr>
                 <?php
+                
                   endforeach;
                 ?>
               </div>
