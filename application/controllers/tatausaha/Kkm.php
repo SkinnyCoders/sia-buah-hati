@@ -66,7 +66,12 @@ class Kkm extends CI_controller
 
     		$data = $this->db->query("SELECT id_kkm, kkm, mapel_kelas.id_mapel_kelas, id_mapel, id_kelas FROM `kkm_mapel` JOIN mapel_kelas ON mapel_kelas.id_mapel_kelas=kkm_mapel.id_mapel_kelas WHERE id_kkm = $id")->row_array();
 
-    		echo json_encode($data);
+    		if(!empty($data)){
+                echo json_encode($data);
+            }else{
+                $data_kosong = '';
+                echo json_encode($data_kosong);
+            }
     	}
 
     	if (isset($_POST['simpan'])) {

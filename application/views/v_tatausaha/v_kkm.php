@@ -273,6 +273,28 @@
 
    })
 
+   $('#mapel_update').on('change', function(){
+       var mapel = $('#mapel_update').val();
+       $.ajax({
+       type: "post",
+       url: "<?= base_url('tatausaha/kkm/get_kelas') ?>",
+       data: {
+         'id_mapel': mapel
+       },
+       dataType: "json",
+       success: function(data) {
+        var html = '';
+             var i;
+
+            for(i=0; i<data.length; i++){
+                html += '<option value="'+data[i].id_mapel_kelas+'">'+data[i].nama_kelas+'</option>';
+            }
+            $("#kelas_update").html(html);
+       },
+     });
+
+   })
+
    $('.delete').on('click', function(e) {
      e.preventDefault();
      var dataId = this.id;

@@ -26,7 +26,7 @@ class Kelas extends CI_controller
 
     public function tambah(){
 
-        $this->form_validation->set_rules('kelas', 'Nama Kelas', 'required|trim', ['required' => '{field} tidak boleh kosong']);
+        $this->form_validation->set_rules('kelas', 'Nama Kelas', 'required|trim|callback_cekKelas', ['required' => '{field} tidak boleh kosong', 'cekKelas' => '{field} sudah digunakan']);
         $this->form_validation->set_rules('tingkat', 'Tingkat Kelas', 'required|trim', ['required' => '{field} tidak boleh kosong']);
 
     	if ($this->form_validation->run() == FALSE) {
@@ -65,9 +65,18 @@ class Kelas extends CI_controller
                 $this->session->set_flashdata('msg_failed', 'Maaf, data kelas gagal diperbarui');
                 redirect('tatausaha/kelas');
             }else{
+                $tingkat = $this->input->post('tingkat');
+                $kelas = $this->input->post('kelas', true);
+                $cekKelas = $this->db->query("SELECT * FROM `kelas` WHERE `nama_kelas` = '$kelas' AND `tingkat_kelas` = $tingkat")->num_rows();
+
+                if($cekKelas > 0){
+                    $this->session->set_flashdata('msg_failed', 'Maaf, data kelas tidak diubah');
+                    redirect('tatausaha/kelas');
+                }
+
                 $data = [
-                    'tingkat_kelas' => $this->input->post('tingkat'),
-                    'nama_kelas' => $this->input->post('kelas', true)
+                    'tingkat_kelas' => $tingkat,
+                    'nama_kelas' => $kelas
                 ];
 
                 if ($this->db->update('kelas', $data, ['id_kelas' => $this->input->post('id')])) {
@@ -91,5 +100,15 @@ class Kelas extends CI_controller
     		$this->session->set_flashdata('msg_failed', 'Selamat, data gagal dihapus');
     		http_response_code(404);
     	}
+    }
+
+    public function cekKelas($kelas){
+        $data = $this->db->get_where('kelas', ['nama_kelas' => $kelas])->row_array();
+
+        if(!empty($data)){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
