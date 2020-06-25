@@ -26,13 +26,15 @@ class Kelas extends CI_controller
 
     public function tambah(){
 
-    	$this->form_validation->set_rules('kelas', 'Nama Kelas', 'required|trim', ['required' => '{field} tidak boleh kosong']);
+        $this->form_validation->set_rules('kelas', 'Nama Kelas', 'required|trim', ['required' => '{field} tidak boleh kosong']);
+        $this->form_validation->set_rules('tingkat', 'Tingkat Kelas', 'required|trim', ['required' => '{field} tidak boleh kosong']);
 
     	if ($this->form_validation->run() == FALSE) {
     		$this->session->set_flashdata('msg_failed', 'Maaf, data gagal ditambahkan');
             redirect('tatausaha/kelas');
     	}else{
     		$data = [
+                'tingkat_kelas' => $this->input->post('tingkat'),
     			'nama_kelas' => $this->input->post('kelas', true)
     		];
 
@@ -56,13 +58,15 @@ class Kelas extends CI_controller
     	}
 
     	if (isset($_POST['simpan'])) {
-    		$this->form_validation->set_rules('kelas', 'Kelas', 'required|trim', ['required' => '{field} tidak boleh kosong']);
+            $this->form_validation->set_rules('kelas', 'Kelas', 'required|trim', ['required' => '{field} tidak boleh kosong']);
+            $this->form_validation->set_rules('tingkat', 'Tingkat Kelas', 'required|trim', ['required' => '{field} tidak boleh kosong']);
 
             if ($this->form_validation->run() == FALSE) {
                 $this->session->set_flashdata('msg_failed', 'Maaf, data kelas gagal diperbarui');
                 redirect('tatausaha/kelas');
             }else{
                 $data = [
+                    'tingkat_kelas' => $this->input->post('tingkat'),
                     'nama_kelas' => $this->input->post('kelas', true)
                 ];
 

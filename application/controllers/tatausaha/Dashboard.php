@@ -15,11 +15,13 @@ class Dashboard extends CI_controller
         //login cek and authentication
         getAuthTatausaha();
         $this->load->model('m_admin');
+        $this->load->model('m_pengumuman');
     }
 
     public function index()
     {
         $data['title'] = 'Dashboard Tata Usaha';
+        $data['pengumumans'] = $this->m_pengumuman->getPengumuman();
         getViews($data, 'v_tatausaha/dashboard');
     }
 

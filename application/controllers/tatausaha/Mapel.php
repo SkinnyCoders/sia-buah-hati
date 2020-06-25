@@ -81,8 +81,8 @@ class Mapel extends CI_controller
     public function mapel_kelas(){
         $data = [
             'title' => 'Konfigurasi Mapel Kelas',
-            'mapel' => $this->db->get('mata_pelajaran')->result_array(),
-            'list' => $this->db->query("SELECT GROUP_CONCAT(kelas.nama_kelas) AS kelas, mapel.nama_mapel, mapel.kode_mapel FROM `mapel_kelas` JOIN mata_pelajaran AS mapel ON mapel.kode_mapel=mapel_kelas.kode_mapel JOIN kelas ON kelas.id_kelas=mapel_kelas.id_kelas GROUP BY mapel.kode_mapel")->result_array(),
+            'mapel' => $this->db->get('mapel')->result_array(),
+            'list' => $this->db->query("SELECT GROUP_CONCAT(kelas.nama_kelas) AS kelas, mapel.nama_mapel, mapel.id_mapel FROM `mapel_kelas` JOIN mapel ON mapel.id_mapel=mapel_kelas.id_mapel JOIN kelas ON kelas.id_kelas=mapel_kelas.id_kelas GROUP BY mapel.id_mapel")->result_array(),
             'kelas_list' => $this->db->get('kelas')->result_array()
             
         ];
@@ -90,13 +90,13 @@ class Mapel extends CI_controller
         $this->form_validation->set_rules('mapel', 'Mata Pelajaran', 'required|trim', ['required' => '{field} tidak boleh kosong']);
 
         if($this->form_validation->run() == FALSE){
-            getViews($data,'v_admin/v_mapel_kelas');
+            getViews($data,'v_tatausaha/v_mapel_kelas');
         }else{
             $datakelas = $this->input->post('datakelas');
             $flag = true;
             for($i=0; $i<count($datakelas); $i++){
                 $data = [
-                    'kode_mapel' => $this->input->post('mapel'),
+                    'id_mapel' => $this->input->post('mapel'),
                     'id_kelas' => $datakelas[$i]
                 ];
 
@@ -107,10 +107,10 @@ class Mapel extends CI_controller
 
             if($flag){
                 $this->session->set_flashdata('msg_success', 'Selamat, data berhasil ditambahkan');
-                redirect('admin/mapel/mapel_kelas');
+                redirect('tatausaha/mapel/mapel_kelas');
             }else{
                 $this->session->set_flashdata('msg_failed', 'Maaf, data gagal ditambahkan');
-                redirect('admin/mapel/mapel_kelas');
+                redirect('tatausaha/mapel/mapel_kelas');
             }
         }
     }
@@ -119,7 +119,7 @@ class Mapel extends CI_controller
         if(isset($_POST['id_get_update'])){
             $id_kode_mapel = $_POST['id_get_update'];
 
-            $data = $this->db->get_where('mapel_kelas', ['kode_mapel' => $id_kode_mapel])->result_array();
+            $data = $this->db->get_where('mapel_kelas', ['id_mapel' => $id_kode_mapel])->result_array();
 
             foreach($data AS $d){
                 $id_kelas[] = $d['id_kelas'];
@@ -127,21 +127,22 @@ class Mapel extends CI_controller
 
             $datafinal = [
                 'id_kelas' => $id_kelas,
-                'kode_mapel' => $data[0]['kode_mapel']
+                'kode_mapel' => $data[0]['id_mapel']
             ];
 
             echo json_encode($datafinal);
-        }elseif(isset($_POST['kode_mapel']) && !empty($_POST['kode_mapel'])){
-            $kode_mapel =  $this->input->post('kode_mapel');
+        }elseif(isset($_POST['id_mapel']) && !empty($_POST['id_mapel'])){
+            echo "OK";
+            $kode_mapel =  $this->input->post('id_mapel');
 
-            $delete = $this->db->delete('mapel_kelas', ['kode_mapel' => $kode_mapel]);
+            $delete = $this->db->delete('mapel_kelas', ['id_mapel' => $kode_mapel]);
 
             if($delete){
                 $datakelas = $this->input->post('kelas');
                 $flag = true;
                 for($i=0; $i<count($datakelas); $i++){
                     $data = [
-                        'kode_mapel' => $this->input->post('kode_mapel'),
+                        'id_mapel' => $this->input->post('id_mapel'),
                         'id_kelas' => $datakelas[$i]
                     ];
 
@@ -152,14 +153,14 @@ class Mapel extends CI_controller
 
                 if($flag){
                     $this->session->set_flashdata('msg_success', 'Selamat, data berhasil diperbaharui');
-                    redirect('admin/mapel/mapel_kelas');
+                    redirect('tatausaha/mapel/mapel_kelas');
                 }else{
                     $this->session->set_flashdata('msg_failed', 'Maaf, data gagal diperbaharui');
-                    redirect('admin/mapel/mapel_kelas');
+                    redirect('tatausaga/mapel/mapel_kelas');
                 }
             }else{
                 $this->session->set_flashdata('msg_failed', 'Maaf, data gagal diperbaharui');
-                redirect('admin/mapel/mapel_kelas');
+                redirect('tatausaga/mapel/mapel_kelas');
             }
             
             
@@ -167,7 +168,7 @@ class Mapel extends CI_controller
     }
 
     public function delete_konfigurasi($id){
-    	$delete = $this->db->delete('mapel_kelas', ['kode_mapel'=> $id]);
+    	$delete = $this->db->delete('mapel_kelas', ['id_mapel'=> $id]);
 
     	if ($delete) {
     		$this->session->set_flashdata('msg_success', 'Selamat, data berhasil dihapus');

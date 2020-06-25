@@ -30,7 +30,7 @@
                               <h3 class="card-title"><i class="far fa-dollar"></i> Tabel Daftar Mapel</h3>
                              
                               <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-add" class="btn btn-sm btn-primary float-right ml-3"><i class="fa fa-plus"></i> Tambah Mapel</a>
-                              <a href="<?php echo base_url('admin/mapel/mapel_kelas')?>" class="btn btn-sm btn-success float-right ml-3"><i class="fa fa-plus"></i> Konfigurasi Mapel Kelas </a>
+                              <a href="<?php echo base_url('tatausaha/mapel/mapel_kelas')?>" class="btn btn-sm btn-success float-right ml-3"><i class="fa fa-cog"></i> Konfigurasi Mapel Kelas </a>
                           </div>
                           <!-- /.card-header -->
                           <!-- form start -->

@@ -22,7 +22,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-md-4 my-auto">
+          <div class="col-md-6 my-auto">
             <div class="card card-primary ">
               <div class="card-header">
                   <h3 class="card-title"><i class="far fa-dollar"></i> Pengumuman</h3>
@@ -30,37 +30,62 @@
               <!-- /.card-header -->
               <!-- form start -->
               <div class="card-body">
+                <form action="<?=base_url('tatausaha/pengumuman/tambah')?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
+                  <input type="hidden" name="id_gtk" value="<?=$this->session->userdata('id_gtk')?>">
                   <div class="col-md-8">
                   <div class="form-group">
-                    <textarea style="width: 100%; height:200px;" class="form-control" name="" id="" placeholder="Tulis Pengumuman"></textarea>
+                    <textarea style="width: 100%; height:200px;" class="form-control" name="konten" id="" placeholder="Tulis Pengumuman"></textarea>
                   </div>
                   </div>
                   <div class="col-md-4">
-                  <input type="file" class="dropify" data-min-height="400">
+                  <input type="file" name="foto" class="dropify" data-min-height="400">
                   </div>
                 </div>
-                <button class="btn btn-sm btn-block btn-primary">Kirim Pengumuman</button>
+                <button type="submit" class="btn btn-sm btn-block btn-primary">Kirim Pengumuman</button>
+                </form>
               </div>
               <div class="card-footer">
+                <?php
+                  foreach($pengumumans AS $p) :
+        
+                    $tgl = DateTime::createFromFormat('Y-m-d H:i:s', $p['tanggal'])->format('d F Y');
+                    $waktu = DateTime::createFromFormat('Y-m-d H:i:s', $p['tanggal'])->format('H:i');
+                ?>
                 <div class="row">
                   <div class="col-md-3">
-                    <img src="<?=base_url('assets/img/user/default.png')?>" style="width:70px; height:70px;" class="rounded-circle elevation-2 mt-2" alt="User Image">
+                    <img src="<?=base_url('assets/img/user/'.$p['foto'])?>" style="width:70px; height:70px;" class="rounded-circle elevation-2 mt-2" alt="User Image">
                   </div>
                   <div class="col-md-8">
-                  <small class=" text-muted text-black"><span style="font-size: 20px; font-weight:bold;">bambang</span> - <span style="font-size: 15px; font-weight:bold;">06 Juni 2020</span> <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, veritatis doloremque ipsam, eum aut dolor modi labore nemo sunt officiis non sint provident cupiditate optio quisquam quidem accusantium neque autem!</small>
+                  <small class=" text-muted text-black"><span style="font-size: 20px; font-weight:bold;"><?=ucwords($p['nama'])?></span> - <span style="font-size: 15px; font-weight:bold;"><?=$tgl?> pukul <?=$waktu?> WIB</span> <br> <?=$p['konten']?></small>
+                    <?php 
+                      if($p['gambar'] !== null) :
+                    ?>
+                    <div class="row mt-3">
+                      <div class="col-md-6">
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModalCenter"><img style="width: 100%; border-radius:5px;" src="<?=base_url('assets/img/pengumuman/'.$p['gambar'])?>" alt=""></a>
+                      </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                          <img style="width: 100%; border-radius:5px;" src="<?=base_url('assets/img/pengumuman/'.$p['gambar'])?>" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <?php
+                      endif;
+                    ?>
                   </div>
                 </div>
                 <hr>
-                <div class="row">
-                  <div class="col-md-3">
-                    <img src="<?=base_url('assets/img/user/default.png')?>" style="width:70px; height:70px;" class="rounded-circle elevation-2 mt-2" alt="User Image">
-                  </div>
-                  <div class="col-md-8">
-                  <small class=" text-muted text-black"><span style="font-size: 20px; font-weight:bold;">bambang</span> - <span style="font-size: 15px; font-weight:bold;">06 Juni 2020</span> <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, veritatis doloremque ipsam, eum aut dolor modi labore nemo sunt officiis non sint provident cupiditate optio quisquam quidem accusantium neque autem!</small>
-                  </div>
-                  <hr>
-                </div>
+                <?php
+                  endforeach;
+                ?>
               </div>
             </div>
           </div>

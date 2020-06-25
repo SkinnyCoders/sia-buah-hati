@@ -38,7 +38,7 @@
                              <thead>
                                <tr>
                                  <th class="text-nowrap" style="width: 5%">No</th>
-                                 <th class="text-nowrap" style="width: 15%">Mapel</th>
+                                 <th class="text-nowrap" style="width: 20%">Guru</th>
                                  <th class="text-nowrap">Kelas</th>
                                  <th style="width: 10%">Aksi</th>
                                </tr>

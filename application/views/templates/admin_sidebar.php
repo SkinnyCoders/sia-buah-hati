@@ -95,6 +95,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('tatausaha/jadwal') ?>" class="nav-link <?= active('jadwal')?>">
+              <i class="nav-icon fa fa-calendar"></i>
+              <p>
+                Data Jadwal Guru
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('tatausaha/tahun_ajaran') ?>" class="nav-link <?= active('tahun_ajaran')?>">
               <i class="nav-icon fa fa-exclamation-circle"></i>
               <p>
@@ -123,6 +131,14 @@
               <i class="nav-icon fa fa-book"></i>
               <p>
                 Data Mapel
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('tatausaha/kkm') ?>" class="nav-link <?= active('kkm')?>">
+              <i class="nav-icon fa fa-dot-circle"></i>
+              <p>
+                Data KKM
               </p>
             </a>
           </li>

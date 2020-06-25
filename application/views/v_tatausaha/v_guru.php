@@ -27,10 +27,10 @@
                       <!-- general form elements -->
                       <div class="card card-default ">
                           <div class="card-header">
-                              <h3 class="card-title"><i class="far fa-dollar"></i> Tabel Daftar GTK</h3>
+                              <h3 class="card-title"><i class="far fa-dollar"></i> Tabel Daftar Tenaga Kependidikan</h3>
                              
-                              <a href="<?php echo base_url('admin/tenaga_kependidikan/tambah')?>" class="btn btn-sm btn-primary float-right ml-3"><i class="fa fa-plus"></i> Tambah GTK</a> 
-                              <a href="<?php echo base_url('admin/tenaga_kependidikan/guru_kelas')?>" class="btn btn-sm btn-success float-right ml-3"><i class="fa fa-plus"></i> Konfigurasi Guru Kelas </a>
+                              <a href="<?php echo base_url('tatausaha/tenaga_kependidikan/tambah')?>" class="btn btn-sm btn-primary float-right ml-3"><i class="fa fa-plus"></i> Tambah GTK</a>
+                              <a href="<?php echo base_url('tatausaha/tenaga_kependidikan/guru_kelas')?>" class="btn btn-sm btn-success float-right ml-3"><i class="fa fa-cog"></i> Konfigurasi Guru Kelas </a>
                           </div>
                           <!-- /.card-header -->
                           <!-- form start -->
@@ -39,12 +39,12 @@
                              <thead>
                                <tr>
                                  <th class="text-nowrap" style="width: 5%">No</th>
-                                 <th class="text-nowrap">NIP</th>
+                                 <th class="text-nowrap" style="width: 15%">NUPTK</th>
                                  <th class="text-nowrap">Nama</th>
-                                 <th class="text-nowrap">NIK</th>
                                  <th class="text-nowrap" style="width: 10%">Jenis Kelamin</th>
                                  <th class="text-nowrap" style="width: 15%">Telepon</th>
-                                 <th class="text-nowrap" style="width: 13%">Status</th>
+                                 <th class="text-nowrap" style="width: 13%">Pendidikan</th>
+                                 <th class="text-nowrap" style="width: 13%">Jabatan</th>
                                  <th style="width: 10%">Aksi</th>
                                </tr>
                              </thead>
@@ -52,7 +52,7 @@
                              <?php 
                              $no = 1;
                              foreach($gtk AS $k) :
-                                switch($k['kelamin']){
+                                switch($k['jenis_kelamin']){
                                     case 'L' :
                                         $gender = 'Laki - Laki';
                                     break;
@@ -61,26 +61,16 @@
                                         $gender = 'Perempuan';
                                     break;
                                 }
-
-                                switch($k['hak_akses']){
-                                    case 'guru' :
-                                        $label = 'success';
-                                    break;
-
-                                    case 'pegawai' :
-                                        $label = 'warning';
-                                    break;
-                                }
                              ?>
                               <tr>
                                 <td><?=$no++?></td>
-                                <td><?= !empty($k['nip'])?$k['nip']:'Kosong'; ?></td>
+                                <td><?= !empty($k['nuptk'])?$k['nuptk']:'Kosong'; ?></td>
                                 <td><?=ucwords($k['nama'])?></td>
-                                <td><?= !empty($k['nik'])?$k['nik']:'Kosong'; ?></td>
                                 <td><?=$gender?></td>
                                 <td><?=$k['telepon']?></td>
-                                <td><label class="btn btn-sm btn-<?=$label?>"><?php echo ucwords($k['hak_akses'])?></label></td>
-                                <td><a href="<?=base_url('admin/tenaga_kependidikan/update/').$k['id_tenaga_kependidikan']?>" class="btn btn-sm btn-primary mr-3 update"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" id="<?=$k['id_tenaga_kependidikan']?>" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></a></td>
+                                <td><?=$k['pendidikan_terakhir']?></td>
+                                <td><label class="btn btn-sm btn-info"><?php echo ucwords($k['hak_akses'])?></label></td>
+                                <td><a href="<?=base_url('tatausaha/tenaga_kependidikan/update/').$k['id_gtk']?>" class="btn btn-sm btn-primary mr-3 update"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" id="<?=$k['id_gtk']?>" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></a></td>
                               </tr>
                              <?php endforeach; ?>
                              </tbody>
@@ -190,15 +180,15 @@
          if (isConfirm.value) {
            $.ajax({
              type: "post",
-             url: "<?= base_url() ?>admin/tenaga_kependidikan/delete/" + dataId,
+             url: "<?= base_url() ?>tatausaha/tenaga_kependidikan/delete/" + dataId,
              data: {
                'id_kelas': dataId
              },
              success: function(respone) {
-               window.location.href = "<?= base_url('admin/tenaga_kependidikan') ?>";
+               window.location.href = "<?= base_url('tatausaha/tenaga_kependidikan') ?>";
              },
              error: function(request, error) {
-               window.location.href = "<?= base_url('admin/tenaga_kependidikan') ?>";
+               window.location.href = "<?= base_url('tatausaha/tenaga_kependidikan') ?>";
              },
            });
          } else {

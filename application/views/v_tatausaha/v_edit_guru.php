@@ -44,11 +44,13 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label >Status GTK</label>
-                                <select name="status" id="status" class="form-control select2bs4" data-placeholder="Pilih Status GTK">
+                                <label >Jabatan GTK</label>
+                                <select name="status" id="status" class="form-control select2bs4" data-placeholder="Pilih Jabatan GTK">
                                     <option></option>
-                                    <option value="guru" <?php if($gtk['hak_akses'] == 'guru'){echo 'selected';} ?>>Guru</option>
-                                    <option value="pegawai" <?php if($gtk['hak_akses'] == 'pegawai'){echo 'selected';} ?>>Pegawai</option>
+                                    <option value="guru kelas" <?php if($gtk['hak_akses'] == 'guru kelas'){echo 'selected';} ?>>Guru Kelas</option>
+                                    <option value="guru mapel" <?php if($gtk['hak_akses'] == 'guru mapel'){echo 'selected';} ?>>Guru Mapel</option>
+                                    <option value="kepsek" <?php if($gtk['hak_akses'] == 'kepsek'){echo 'selected';} ?>>Kepala Sekolah</option>
+                                    <option value="tatausaha" <?php if($gtk['hak_akses'] == 'tatausaha'){echo 'selected';} ?>>Tata Usaha</option>
                                 </select>
                                 <small class="text-danger mt-2"><?= form_error('status') ?></small>
                             </div>
@@ -58,16 +60,51 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="nip">NIP <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="nip" id="nip" placeholder="Masukkan NIP" value="<?php echo !empty($gtk['nip'])?$gtk['nip']:set_value('nip') ?>">
-                                <small class="text-danger mt-2"><?= form_error('nip') ?></small>
+                                <label for="nip">NUPTK <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="nuptk" id="nuptk" placeholder="Masukkan NUPTK" value="<?php echo !empty($gtk['nuptk'])?$gtk['nuptk']:set_value('nuptk') ?>">
+                                <small class="text-danger mt-2"><?= form_error('nuptk') ?></small>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="nik">NIK <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="nik" id="nik" placeholder="Masukkan NIK" value="<?php echo !empty($gtk['nik'])?$gtk['nik']:set_value('nik') ?>">
-                                <small class="text-danger mt-2"><?= form_error('nik') ?></small>
+                                <label for="nik">No SK <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="sk" id="sk" placeholder="Masukkan No SK" value="<?php echo !empty($gtk['no_sk'])?$gtk['no_sk']:set_value('sk') ?>">
+                                <small class="text-danger mt-2"><?= form_error('sk') ?></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label >Pendidikan Terakhir</label>
+                                <select name="jenjang" id="jenjang" class="form-control select2bs4" data-placeholder="Pilih Pendidikan Terakhir">
+                                    <option></option>
+                                    <option value="sd" <?php if($gtk['pendidikan_terakhir'] == 'sd'){echo 'selected';} ?>>Sekolah Dasar</option>
+                                    <option value="smp" <?php if($gtk['pendidikan_terakhir'] == 'smp'){echo 'selected';} ?>>Sekolah Menengah Pertama</option>
+                                    <option value="sma" <?php if($gtk['pendidikan_terakhir'] == 'sma'){echo 'selected';} ?>>Sekolah Menengah Atas</option>
+                                    <option value="d2" <?php if($gtk['pendidikan_terakhir'] == 'd2'){echo 'selected';} ?>>Diploma 2</option>
+                                    <option value="d3" <?php if($gtk['pendidikan_terakhir'] == 'd3'){echo 'selected';} ?>>Diploma 3</option>
+                                    <option value="s1" <?php if($gtk['pendidikan_terakhir'] == 's1'){echo 'selected';} ?>>Sarajana 1</option>
+                                    <option value="magister" <?php if($gtk['pendidikan_terakhir'] == 'magister'){echo 'selected';} ?>>Magister</option>
+                                    <option value="doktor" <?php if($gtk['pendidikan_terakhir'] == 'doktor'){echo 'selected';} ?>>Doktor</option>
+                                </select>
+                                <small class="text-danger mt-2"><?= form_error('jenjang') ?></small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tamat Pendidikan <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="tamat_pendidikan" class="form-control float-right" placeholder="Pilih tanggal tamat pendidikan" id="datepicker4"  value="<?php echo !empty($gtk['tamat_pendidikan'])?DateTime::createFromFormat('Y-m-d', $gtk['tamat_pendidikan'])->format('m/d/Y'):set_value('tamat_pendidikan') ?>">
+                                </div>
+                                <!-- /.input group -->
+                                <small class="text-danger mt-2"><?= form_error('tamat_pendidikan') ?></small>
                             </div>
                         </div>
                     </div>
@@ -75,11 +112,11 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Jenis Kelamin <span class="text-danger">*</span></label>
                         <div class="custom-control custom-radio">
-                            <input class="custom-control-input" value="L" type="radio" id="male" name="gender" <?php if($gtk['kelamin'] == 'L'){echo 'checked';} ?> >
+                            <input class="custom-control-input" value="L" type="radio" id="male" name="gender" <?php if($gtk['jenis_kelamin'] == 'L'){echo 'checked';} ?> >
                             <label for="male" class="custom-control-label">Laki - Laki</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input class="custom-control-input" value="P" type="radio" id="female" name="gender" <?php if($gtk['kelamin'] == 'P'){echo 'checked';} ?>>
+                            <input class="custom-control-input" value="P" type="radio" id="female" name="gender" <?php if($gtk['jenis_kelamin'] == 'P'){echo 'checked';} ?>>
                             <label for="female" class="custom-control-label">Perempuan</label>
                         </div>
                     </div>
@@ -132,33 +169,41 @@
                     </div>
 
                     <hr>
-                  
-                    <div class="row">
-                        <div class="col-md-6">
+
+                    <div class="profil">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" name="password" id="exampleInputPassword1" minlength="8" placeholder="Password">
-                            <small class="text-danger mt-2"><?= form_error('password') ?></small>
+                            <label for="agama">Username <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Username" value="<?php echo !empty($gtk['username'])?$gtk['username']:set_value('username')?>">
+                            <small class="text-danger mt-2"><?= form_error('username') ?></small>
                         </div>
+                    
+                        <div class="row">
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" name="password" id="exampleInputPassword1" minlength="8" placeholder="Password">
+                                <small class="text-danger mt-2"><?= form_error('password') ?></small>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Konfirmasi Password</label>
+                                <input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <small class="text-danger mt-2"><?= form_error('password1') ?></small>
+                            </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Konfirmasi Password</label>
-                            <input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            <small class="text-danger mt-2"><?= form_error('password1') ?></small>
+                            <label for="exampleInputFile">Foto Pengguna</label>
+                            <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="foto" onchange="loadFile(event)" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Pilih Gambar</label>
+                            </div>
+                            </div>
                         </div>
-                        </div>
+                        <img class="mt-2 mb-2 img-preview" src="<?= base_url()?>assets/img/user/<?=!empty($gtk['foto'])?$gtk['foto']:'default.png'?>" id="output">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputFile">Foto Pengguna</label>
-                        <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="foto" onchange="loadFile(event)" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Pilih Gambar</label>
-                        </div>
-                        </div>
-                    </div>
-                    <img class="mt-2 mb-2 img-preview" src="<?= base_url()?>assets/img/user/<?=!empty($gtk['foto'])?$gtk['foto']:'default.png'?>" id="output">
                 </div>
                 <!-- /.card-body -->
 
@@ -187,6 +232,13 @@
               autoclose: true
           })
       })
+
+      $(function() {
+          //Date picker
+          $('#datepicker4').datepicker({
+              autoclose: true
+          })
+      });
   </script>
 
   <script>
@@ -226,6 +278,26 @@
       var output = document.getElementById('output');
       output.src = URL.createObjectURL(event.target.files[0]);
     };
+
+    $(document).ready(function(){
+        var status = $('#status').val();
+
+        if(status == 'guru mapel'){
+            $('.profil').hide();
+        }else{
+            $('.profil').show();
+        }
+    })
+
+    $('#status').on('change', function(){
+        var status = $('#status').val();
+
+        if(status == 'guru mapel'){
+            $('.profil').hide();
+        }else{
+            $('.profil').show();
+        }
+    })
 
     $('#prodi').on('change', function(){
         var id_jurusan = $('#prodi').val();

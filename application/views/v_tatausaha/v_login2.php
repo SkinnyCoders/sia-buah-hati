@@ -52,7 +52,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-10 col-xl-7 mx-auto">
-                            <h3 class="display-4">Tata Usaha</h3>
+                            <h3 class="display-5 text-center">Selamat Datang</h3>
                             <p class="text-muted mb-4">Silahkan Login, untuk mengakses sistem</p>
                             <form action="" method="POST">
                                 <div class="form-group mb-3">
@@ -66,7 +66,7 @@
                                     <label for="customCheck1" class="custom-control-label">Remember password</label>
                                 </div> -->
                                 <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Login</button>
-                                <div class="text-center d-flex justify-content-between mt-4"><p>Copyright &copy; 2020 SIA SD IT Buah Hati</p></div>
+                                <div class="text-center d-flex justify-content-between mt-4"><p>Copyright &copy; 2020 SIA SDIT Buah Hati</p></div>
                             </form>
                         </div>
                     </div>

@@ -9,7 +9,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?= base_url('tatausaha')?>">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="<?= base_url('tatausaha/dashboard')?>">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="<?= base_url('tatausaha/tenaga_kependidikan')?>">Daftar GTK</a></li>
               <li class="breadcrumb-item active">Tambah</li>
             </ol>
@@ -32,7 +32,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="" method="post" role="form" enctype="multipart/form-data">
+              <form action="<?=base_url('tatausaha/tenaga_kependidikan/tambah')?>" method="post" role="form" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-8">
@@ -47,7 +47,8 @@
                                 <label >Jabatan GTK</label>
                                 <select name="status" id="status" class="form-control select2bs4" data-placeholder="Pilih Jabatan GTK">
                                     <option></option>
-                                    <option value="guru">Guru</option>
+                                    <option value="guru kelas">Guru Kelas</option>
+                                    <option value="guru mapel">Guru Mapel</option>
                                     <option value="kepsek">Kepala Sekolah</option>
                                     <option value="tatausaha">Tata Usaha</option>
                                 </select>
@@ -60,15 +61,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="nip">NUPTK <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="nip" id="nip" placeholder="Masukkan NUPTK" value="<?php echo set_value('nip') ?>">
-                                <small class="text-danger mt-2"><?= form_error('nip') ?></small>
+                                <input type="text" class="form-control" name="nuptk" id="nuptk" placeholder="Masukkan NUPTK" value="<?php echo set_value('nip') ?>">
+                                <small class="text-danger mt-2"><?= form_error('nuptk') ?></small>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="nik">No SK <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="nik" id="nik" placeholder="Masukkan No SK" value="<?php echo set_value('nik') ?>">
-                                <small class="text-danger mt-2"><?= form_error('nik') ?></small>
+                                <input type="text" class="form-control" name="sk" id="sk" placeholder="Masukkan No SK" value="<?php echo set_value('nik') ?>">
+                                <small class="text-danger mt-2"><?= form_error('sk') ?></small>
                             </div>
                         </div>
                     </div>
@@ -168,38 +169,40 @@
 
                     <hr>
                   
-                    <div class="form-group">
-                        <label for="agama">Username <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Username" value="<?php echo set_value('username')?>">
-                        <small class="text-danger mt-2"><?= form_error('username') ?></small>
-                    </div>
+                    <div class="profil">
+                        <div class="form-group">
+                            <label for="agama">Username <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Username" value="<?php echo set_value('username')?>">
+                            <small class="text-danger mt-2"><?= form_error('username') ?></small>
+                        </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" name="password" id="password" minlength="8" placeholder="Password">
+                                <small class="text-danger mt-2"><?= form_error('password') ?></small>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Konfirmasi Password</label>
+                                <input type="password" name="password1" class="form-control" id="password1" placeholder="Password">
+                                <small class="text-danger mt-2"><?= form_error('password1') ?></small>
+                            </div>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" name="password" id="exampleInputPassword1" minlength="8" placeholder="Password">
-                            <small class="text-danger mt-2"><?= form_error('password') ?></small>
+                            <label for="exampleInputFile">Foto Pengguna</label>
+                            <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input foto" name="foto" onchange="loadFile(event)" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Pilih Gambar</label>
+                            </div>
+                            </div>
                         </div>
-                        </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Konfirmasi Password</label>
-                            <input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            <small class="text-danger mt-2"><?= form_error('password1') ?></small>
-                        </div>
-                        </div>
+                        <img class="mt-2 mb-2 img-preview" src="<?=base_url('assets/img/user/default.png')?>" id="output">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputFile">Foto Pengguna</label>
-                        <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="foto" onchange="loadFile(event)" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Pilih Gambar</label>
-                        </div>
-                        </div>
-                    </div>
-                    <img class="mt-2 mb-2 img-preview" src="<?=base_url('assets/img/user/default.png')?>" id="output">
                 </div>
                 <!-- /.card-body -->
 
@@ -297,5 +300,15 @@
             }
         })
     });
+
+    $('#status').on('change', function(){
+        var status = $('#status').val();
+
+        if(status == 'guru mapel'){
+            $('.profil').hide();
+        }else{
+            $('.profil').show();
+        }
+    })
   </script>
   

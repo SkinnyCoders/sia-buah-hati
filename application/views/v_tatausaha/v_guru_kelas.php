@@ -9,7 +9,8 @@
                   </div><!-- /.col -->
                   <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
-                          <li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Dashboard</a></li>
+                          <li class="breadcrumb-item"><a href="<?= base_url('tatausaha/dashboard') ?>">Dashboard</a></li>
+                          <li class="breadcrumb-item"><a href="<?= base_url('tatausaha/tenaga_kependidikan')?>">Daftar GTK</a></li>
                           <li class="breadcrumb-item active">Konfigurasi Guru Kelas</li>
                       </ol>
                   </div><!-- /.col -->
@@ -37,7 +38,7 @@
                              <thead>
                                <tr>
                                  <th class="text-nowrap" style="width: 5%">No</th>
-                                 <th class="text-nowrap" style="width: 15%">NIP</th>
+                                 <th class="text-nowrap" style="width: 15%">NUPTK</th>
                                  <th class="text-nowrap" style="width: 25%">Nama</th>
                                  <th class="text-nowrap">Kelas</th>
                                  <th style="width: 10%">Aksi</th>
@@ -51,14 +52,14 @@
                              ?>
                               <tr>
                                 <td><?=$no++?></td>
-                                <td><?=$l['nip']?></td>
+                                <td><?=$l['nuptk']?></td>
                                 <td><?=ucwords($l['nama'])?></td>
                                 <td>
                                 <?php for($i=0; $i<count($kelas); $i++){
                                     echo '<label class="btn btn-sm btn-info mr-2">'.$kelas[$i].'</label>';
                                 } ?>
                                 </td>
-                                <td><a href="javascript:void(0)" data-toggle="modal" data-target="#modal-update" id="<?=$l['id_tenaga_kependidikan']?>" class="btn btn-sm btn-primary mr-3 update"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" id="<?=$l['id_tenaga_kependidikan']?>" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></a></td>
+                                <td><a href="javascript:void(0)" data-toggle="modal" data-target="#modal-update" id="<?=$l['id_gtk']?>" class="btn btn-sm btn-primary mr-3 update"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" id="<?=$l['id_gtk']?>" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></a></td>
                               </tr>
                              <?php endforeach; ?>
                              </tbody>
@@ -89,7 +90,7 @@
                             <select name="guru" id="guru" class="form-control select2bs4" data-placeholder="Pilih Guru"> 
                                 <option></option>
                                 <?php foreach($gurus AS $g) :?>
-                                <option value="<?=$g['id_tenaga_kependidikan']?>"><?=$g['nama']?></option>
+                                <option value="<?=$g['id_gtk']?>"><?=$g['nama']?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small class="text-danger mt-2"><?= form_error('kelas') ?></small>
@@ -133,7 +134,7 @@
                    </div>
                    <div class="modal-body">
                          <!-- form start -->
-                      <form action="<?=base_url('admin/tenaga_kependidikan/update_guru_kelas')?>" method="post" role="form">
+                      <form action="<?=base_url('tatausaha/tenaga_kependidikan/update_guru_kelas')?>" method="post" role="form">
                       <input type="hidden" id="id_gtk_update" name="id_gtk" value="">
                       <div class="row">
                         <div class="col-md-12">
@@ -196,7 +197,7 @@
      var dataId = this.id;
      $.ajax({
        type: "post",
-       url: "<?= base_url('admin/tenaga_kependidikan/update_guru_kelas') ?>",
+       url: "<?= base_url('tatausaha/tenaga_kependidikan/update_guru_kelas') ?>",
        data: {
          'id_get_update': dataId
        },
@@ -224,15 +225,15 @@
          if (isConfirm.value) {
            $.ajax({
              type: "post",
-             url: "<?= base_url() ?>admin/tenaga_kependidikan/delete/" + dataId,
+             url: "<?= base_url() ?>tatausaha/tenaga_kependidikan/delete/" + dataId,
              data: {
                'id_kelas': dataId
              },
              success: function(respone) {
-               window.location.href = "<?= base_url('admin/tenaga_kependidikan') ?>";
+               window.location.href = "<?= base_url('tatausaha/tenaga_kependidikan') ?>";
              },
              error: function(request, error) {
-               window.location.href = "<?= base_url('admin/tenaga_kependidikan') ?>";
+               window.location.href = "<?= base_url('tatausaha/tenaga_kependidikan') ?>";
              },
            });
          } else {
