@@ -39,12 +39,18 @@ class Kkm extends CI_controller
         $this->form_validation->set_rules('kelas', 'Tingkat Kelas', 'required|trim', ['required' => '{field} tidak boleh kosong']);
         $this->form_validation->set_rules('kkm', 'KKM', 'required|trim', ['required' => '{field} tidak boleh kosong']);
 
-        var_dump($_POST);
-
     	if ($this->form_validation->run() == FALSE) {
     		$this->session->set_flashdata('msg_failed', 'Maaf, data gagal ditambahkan');
             redirect('tatausaha/kkm');
     	}else{
+            $cek = $this->db->get_where('kkm_mapel', ['id_mapel_kelas' => $this->input->post('kelas')])->num_rows();
+
+            if($cek > 0){
+                $this->session->set_flashdata('msg_failed', 'Maaf, data sudah digunakan');
+                redirect('tatausaha/kkm');
+                return false;
+            }
+
     		$data = [
                 'id_mapel_kelas' => $this->input->post('kelas'),
     			'kkm' => $this->input->post('kkm', true)

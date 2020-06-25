@@ -95,12 +95,18 @@ class Mapel extends CI_controller
             $datakelas = $this->input->post('datakelas');
             $flag = true;
             for($i=0; $i<count($datakelas); $i++){
-                $data = [
-                    'id_mapel' => $this->input->post('mapel'),
-                    'id_kelas' => $datakelas[$i]
-                ];
-
-                if(!$this->db->insert('mapel_kelas', $data)){
+                //cek data kelas yang sama
+                $cek = $this->db->query("SELECT * FROM `mapel_kelas` WHERE `id_kelas` = ".$datakelas[$i]." AND `id_mapel` = ".$this->input->post('mapel'))->num_rows();
+                if($cek == 0){
+                    $data = [
+                        'id_mapel' => $this->input->post('mapel'),
+                        'id_kelas' => $datakelas[$i]
+                    ];
+    
+                    if(!$this->db->insert('mapel_kelas', $data)){
+                        $flag = false;
+                    }
+                }else{
                     $flag = false;
                 }
             }
