@@ -95,6 +95,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('tatausaha/siswa') ?>" class="nav-link <?= active('siswa')?>">
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                Data Siswa
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('tatausaha/jadwal') ?>" class="nav-link <?= active('jadwal')?>">
               <i class="nav-icon fa fa-calendar"></i>
               <p>

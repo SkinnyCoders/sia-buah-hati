@@ -32,6 +32,13 @@ class Mapel extends CI_controller
     		$this->session->set_flashdata('msg_failed', 'Maaf, data gagal ditambahkan');
             redirect('tatausaha/mapel');
     	}else{
+            $cek = $this->db->get_where('mapel', ['nama_mapel' => $this->input->post('mapel')])->row_array();
+            if($cek > 0){
+                $this->session->set_flashdata('msg_failed', 'Maaf, data sudah digunakan');
+                redirect('tatausaha/mapel');
+                return false;
+            }
+
     		$data = [
                 'nama_mapel' => $this->input->post('mapel', true)
     		];
