@@ -176,6 +176,16 @@ class Siswa extends CI_controller
         }
 
     }
+
+    public function detail($nisn){
+        $data = [
+            'title' => 'Detail Siswa',
+            'siswa' =>  $this->db->query("SELECT * FROM siswa JOIN kelas ON kelas.id_kelas=siswa.id_kelas WHERE siswa.nisn = $nisn")->row_array()
+        ];
+
+        getViews($data, 'v_tatausaha/v_detail_siswa');
+    }
+     
     
     public function delete($id){
     	$delete = $this->db->delete('siswa', ['nisn'=> $id]);

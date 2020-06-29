@@ -151,6 +151,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('tatausaha/pengembangan_diri') ?>" class="nav-link <?= active('pengembangan_diri')?>">
+              <i class="nav-icon fa fa-times"></i>
+              <p>
+                Data Pengembangan Diri
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('tatausaha/pengguna') ?>" class="nav-link <?= active('pengguna')?>">
               <i class="nav-icon fa fa-user"></i>
               <p>
