@@ -29,6 +29,7 @@
                           <div class="card-header">
                               <h3 class="card-title"><i class="far fa-dollar"></i><?=$title?></h3>
                               <a href="javascript:void(0)"  data-toggle="modal" data-target="#modal-tambah" class="btn btn-primary float-right"> Inputkan Absensi Hari Ini</a>
+                              <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-add" class="btn btn-warning float-right mr-3"><i class="fa fa-calendar"></i> Tampilkan Berdasarkan Tanggal</a>
                           </div>
                           <!-- /.card-header -->
                           <!-- form start -->
@@ -52,7 +53,7 @@
                                     <small class="text-danger"><?= form_error('kelas')?></small>
                                   </div>
                                   <button type="submit" class="btn btn-primary float-right" name="search">Lihat Absensi</button>
-                                  <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-add" class="btn btn-warning float-right mr-3"><i class="fa fa-calendar"></i> Tampilkan Berdasarkan Tanggal</a>
+                                  
                                 </form>
                               </div>
                             </div>

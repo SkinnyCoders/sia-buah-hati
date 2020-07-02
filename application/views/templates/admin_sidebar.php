@@ -111,6 +111,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('tatausaha/absensi') ?>" class="nav-link <?= active('absensi')?>">
+              <i class="nav-icon fa fa-calendar"></i>
+              <p>
+                Data Absensi
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('tatausaha/tahun_ajaran') ?>" class="nav-link <?= active('tahun_ajaran')?>">
               <i class="nav-icon fa fa-exclamation-circle"></i>
               <p>
@@ -158,14 +166,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+<!--           <li class="nav-item">
             <a href="<?= base_url('tatausaha/pengguna') ?>" class="nav-link <?= active('pengguna')?>">
               <i class="nav-icon fa fa-user"></i>
               <p>
                 Pengguna
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
                 <a href="<?= base_url('front/auth/logout') ?>" class="nav-link">
                   <i class="fas fa-arrow-circle-right nav-icon"></i>
