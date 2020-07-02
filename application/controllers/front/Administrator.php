@@ -60,6 +60,22 @@ class Administrator extends CI_controller
                             redirect('guru_kelas/dashboard');
                         break;
 
+                        case 'guru mapel' :
+                            $data = [
+                                'is_login' => 'punten',
+                                'nama' => $user['nama'],
+                                'username' => $user['username'],
+                                'nama_role' => 'Guru Mapel',
+                                'foto' => $user['foto'],
+                                'id_gtk' => $user['id_gtk'],
+                                'role' => 3
+                            ];
+
+                            $this->session->set_userdata($data);
+                            $this->session->set_flashdata('msg_success', 'Selamat, Anda berhasil login');
+                            redirect('guru_mapel/dashboard');
+                        break;
+
                         case 'kepsek' :
                             $data = [
                                 'is_login' => 'punten',
@@ -68,7 +84,7 @@ class Administrator extends CI_controller
                                 'nama_role' => 'Kepala Sekolah',
                                 'foto' => $user['foto'],
                                 'id_gtk' => $user['id_gtk'],
-                                'role' => 3
+                                'role' => 4
                             ];
 
                             $this->session->set_userdata($data);

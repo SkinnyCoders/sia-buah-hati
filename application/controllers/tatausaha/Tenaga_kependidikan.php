@@ -41,12 +41,9 @@ class Tenaga_kependidikan extends CI_controller
         $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required|trim', ['required' => '{field} tidak boleh kosong']);
         $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim', ['required' => '{field} tidak boleh kosong']);
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', ['required' => '{field} tidak boleh kosong']);
-
-        if(isset($_POST['status']) && $_POST['status'] !== 'guru mapel'){
-            $this->form_validation->set_rules('username', 'Username', 'required|trim|callback_cekUsername', ['required' => '{field} tidak boleh kosong']);
-            $this->form_validation->set_rules('password', 'Password' , 'required|callback_cekPassword', ['required' => '{field} tidak boleh kosong', 'cekPassword' => '{field} terlalu pendek']);
-		    $this->form_validation->set_rules('password1', 'Konfirmasi Password', 'required|matches[password]', ['required' => '{field} tidak boleh kosong', 'matches' => '{field} tidak sama']);
-        }
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|callback_cekUsername', ['required' => '{field} tidak boleh kosong']);
+        $this->form_validation->set_rules('password', 'Password' , 'required|callback_cekPassword', ['required' => '{field} tidak boleh kosong', 'cekPassword' => '{field} terlalu pendek']);
+		$this->form_validation->set_rules('password1', 'Konfirmasi Password', 'required|matches[password]', ['required' => '{field} tidak boleh kosong', 'matches' => '{field} tidak sama']);
 
     	if ($this->form_validation->run() == FALSE) {
     		getViews($data,'v_tatausaha/v_add_guru');

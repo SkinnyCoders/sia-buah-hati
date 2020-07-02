@@ -99,6 +99,41 @@
               </div>
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="card card-primary ">
+              <div class="card-header">
+                  <h3 class="card-title"><i class="far fa-dollar"></i> Jadwal hari ini</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <div class="card-body">
+                <table class="table">
+                  <thead class="bg-info">
+                    <tr>
+                      <th>Kelas</th>
+                    <th>Mapel</th>
+                    <th>Jam Mulai</th>
+                    <th>Sampai</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Kelas 1</td>
+                      <td>Bahasa</td>
+                      <td>07:30 WIB</td>
+                      <td>08:50 WIB</td>
+                    </tr>
+                    <tr>
+                      <td>Kelas 3</td>
+                      <td>Bahasa</td>
+                      <td>07:30 WIB</td>
+                      <td>08:50 WIB</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- /.row -->
 
@@ -217,10 +252,10 @@
                'id_kelas': dataId
              },
              success: function(respone) {
-               window.location.href = "<?= base_url('tatausaha/dashboard') ?>";
+               window.location.href = "<?= base_url('guru_kelas/dashboard') ?>";
              },
              error: function(request, error) {
-               window.location.href = "<?= base_url('tatausaha/dashboard') ?>";
+               window.location.href = "<?= base_url('guru_kelas/dashboard') ?>";
              },
            });
          } else {

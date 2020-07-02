@@ -1,16 +1,30 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-function getAuthGuru()
+function getAuthGuruKelas()
 {
     $CI = &get_instance();
     if ($CI->session->userdata('is_login') !== 'punten') {
         $CI->session->set_flashdata('msg_failed', 'Maaf, Harus login terlebih dahulu!');
-        redirect('/');
+        redirect('administrator');
         return false;
-    }elseif($CI->session->userdata('nama_role') !== 'Guru'){
+    }elseif($CI->session->userdata('nama_role') !== 'Guru Kelas'){
         $CI->session->set_flashdata('msg_failed', 'Maaf, Anda tidak memiliki akses ke halaman!');
-        redirect('/');
+        redirect('guru_kelas/dashboard');
+        return false;
+    }
+}
+
+function getAuthGuruMapel()
+{
+    $CI = &get_instance();
+    if ($CI->session->userdata('is_login') !== 'punten') {
+        $CI->session->set_flashdata('msg_failed', 'Maaf, Harus login terlebih dahulu!');
+        redirect('administrator');
+        return false;
+    }elseif($CI->session->userdata('nama_role') !== 'Guru Mapel'){
+        $CI->session->set_flashdata('msg_failed', 'Maaf, Anda tidak memiliki akses ke halaman!');
+        redirect('guru_kelas/dashboard');
         return false;
     }
 }
@@ -29,14 +43,14 @@ function getAuthTatausaha()
     }
 }
 
-function getAuthPegawai()
+function getAuthKepsek()
 {
     $CI = &get_instance();
     if ($CI->session->userdata('is_login') !== 'punten') {
         $CI->session->set_flashdata('msg_failed', 'Maaf, Harus login terlebih dahulu!');
         redirect('/');
         return false;
-    }elseif($CI->session->userdata('nama_role') !== 'Pegawai'){
+    }elseif($CI->session->userdata('nama_role') !== 'kepsek'){
         $CI->session->set_flashdata('msg_failed', 'Maaf, Anda tidak memiliki akses ke halaman!');
         redirect('/');
         return false;

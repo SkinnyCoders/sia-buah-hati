@@ -300,15 +300,5 @@
             }
         })
     });
-
-    $('#status').on('change', function(){
-        var status = $('#status').val();
-
-        if(status == 'guru mapel'){
-            $('.profil').hide();
-        }else{
-            $('.profil').show();
-        }
-    })
   </script>
   
