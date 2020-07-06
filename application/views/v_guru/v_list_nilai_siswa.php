@@ -33,7 +33,7 @@
                           <!-- form start -->
           
                           <div class="card-body">
-                          <form action="" method="POST">
+                          <form action="" method="get">
                             <div class="row">
                            
                               <div class="col-md-4">
@@ -79,7 +79,7 @@
                                     </select>
                                     <small class="text-danger"><?= form_error('semester')?></small>
                                   </div>          
-                                  <button type="submit" name="tampil" class="btn btn-primary float-right">Tampilkan Siswa</button>
+                                  <button type="submit" class="btn btn-primary float-right">Tampilkan Siswa</button>
                               </div>
                             </div>
                             </form>
@@ -88,6 +88,7 @@
                             if (!empty($siswa)) : 
                               ?>
                             <div class="row mt-5">
+                              <p><??></p>
                               <div class="col-md-12">
                                 <table id="example1" class="table table-striped">
                                  <thead>
@@ -107,7 +108,7 @@
                                       <td><?=$no++?></td>
                                       <td><?=$peserta['nisn']?></td>
                                       <td><?=ucwords($peserta['nama_siswa'])?></td>
-                                      <td><a href="javascript:void(0)" data-toggle="modal" data-target="#modal-ubah" id="<?=$peserta['nisn']?>" class="btn btn-sm btn-success update">Ubah</a></td>
+                                      <td><a href="<?=base_url('guru_kelas/nilai/input_nilai')?>?nisn=<?=$peserta['nisn']?>&id_semester=<?=$_POST['semester']?>&id_mapel=<?=$_POST['mapel']?>" target="_blank" id="<?=$peserta['nisn']?>" class="btn btn-sm btn-primary update">Input Nilai</a></td>
                                     </tr>
                                   <?php endforeach; ?>
                                  </tbody>

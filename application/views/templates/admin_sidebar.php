@@ -198,13 +198,30 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('guru/nilai') ?>" class="nav-link <?= active('nilai')?>">
+            <a href="<?= base_url('guru_kelas/nilai') ?>" class="nav-link <?= active('nilai')?>">
               <i class="nav-icon fa fa-check"></i>
               <p>
                 Nilai Siswa
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('guru_kelas/nilai_pengembangan') ?>" class="nav-link <?= active('nilai_pengembangan')?>">
+              <i class="nav-icon fa fa-check"></i>
+              <p>
+                Nilai Pengembangan Diri
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('guru_kelas/raport') ?>" class="nav-link <?= active('raport')?>">
+              <i class="nav-icon fa fa-check"></i>
+              <p>
+                Raport
+              </p>
+            </a>
+          </li>
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>

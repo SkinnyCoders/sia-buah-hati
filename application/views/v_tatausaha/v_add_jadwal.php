@@ -51,22 +51,29 @@
                                 <small class="text-danger mt-2"><?= form_error('status') ?></small>
                             </div>
                         </div>
+                        
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label >Kelas <span class="text-danger">*</span></label>
-                                <select name="kelas" id="kelas" class="form-control select2bs4" data-placeholder="Pilih Mengajar di Kelas mana">
+                                <label >Mata Pelajaran <span class="text-danger">*</span></label>
+                                <select name="mapel" id="mapel" class="form-control select2bs4" data-placeholder="Pilih Mata Pelajaran">
                                     <option></option>
-                                   
+                                    <?php 
+                                    foreach($mapel AS $m) :
+                                    ?>
+                                    <option value="<?=$m['id_mapel']?>"><?=ucwords($m['nama_mapel'])?></option>
+                                    <?php
+                                    endforeach;
+                                    ?>
                                 </select>
                                 <small class="text-danger mt-2"><?= form_error('status') ?></small>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label >Mata Pelajaran <span class="text-danger">*</span></label>
-                                <select name="mapel" id="mapel" class="form-control select2bs4" data-placeholder="Pilih Mata Pelajaran">
+                                <label >Kelas <span class="text-danger">*</span></label>
+                                <select name="kelas" id="kelas" class="form-control select2bs4" data-placeholder="Pilih Mengajar di Kelas mana">
                                     <option></option>
-                                    
+                                   
                                 </select>
                                 <small class="text-danger mt-2"><?= form_error('status') ?></small>
                             </div>
@@ -197,8 +204,8 @@
       output.src = URL.createObjectURL(event.target.files[0]);
     };
 
-    $('#guru').on('change', function(){
-        var id_jurusan = $('#guru').val();
+    $('#mapel').on('change', function(){
+        var id_jurusan = $('#mapel').val();
 
         $.ajax({
             type : "POST",
@@ -220,28 +227,28 @@
         })
     });
 
-    $('#kelas').on('change', function(){
-        var id_jurusan = $('#kelas').val();
+    // $('#kelas').on('change', function(){
+    //     var id_jurusan = $('#kelas').val();
 
-        $.ajax({
-            type : "POST",
-            url : "<?= base_url('tatausaha/jadwal/get_mapel')?>",
-            data : {'id' : id_jurusan},
-            dataType : "json",
-            success : function(data){
+    //     $.ajax({
+    //         type : "POST",
+    //         url : "<?= base_url('tatausaha/jadwal/get_mapel')?>",
+    //         data : {'id' : id_jurusan},
+    //         dataType : "json",
+    //         success : function(data){
 
-                var html = '';
-                var i;
+    //             var html = '';
+    //             var i;
 
-                for(i = 0; i<data.length; i++){
-                    html += '<option value="'+data[i].id_mapel+'">'+data[i].nama_mapel+'</option>'
-                }
+    //             for(i = 0; i<data.length; i++){
+    //                 html += '<option value="'+data[i].id_mapel+'">'+data[i].nama_mapel+'</option>'
+    //             }
 
-                $('#mapel').html(html);
+    //             $('#mapel').html(html);
 
-            }
-        })
-    });
+    //         }
+    //     })
+    // });
 
     $('#status').on('change', function(){
         var status = $('#status').val();

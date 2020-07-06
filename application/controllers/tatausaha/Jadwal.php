@@ -27,7 +27,8 @@ class Jadwal extends CI_controller
     public function tambah(){
         $data = [
             'title' => 'Tambah Jadwal Guru',
-            'guru' => $this->db->query("SELECT * FROM `tenaga_kependidikan` WHERE `hak_akses` = 'guru kelas' OR hak_akses = 'guru mapel'")->result_array()
+            'guru' => $this->db->query("SELECT * FROM `tenaga_kependidikan` WHERE `hak_akses` = 'guru kelas' OR hak_akses = 'guru mapel'")->result_array(),
+            'mapel' => $this->db->get('mapel')->result_array()
         ];
         
         $this->form_validation->set_rules('guru', 'Guru', 'required', ['required' => '{field} tidak boleh kosong']);
@@ -112,8 +113,8 @@ class Jadwal extends CI_controller
     }
 
     public function get_kelas(){
-        $id_gtk = $_POST['id'];
-        $data = $this->db->query("SELECT * FROM `guru_kelas` JOIN kelas ON kelas.id_kelas=guru_kelas.id_kelas WHERE guru_kelas.id_gtk = $id_gtk")->result_array();
+        $id_mapel = $_POST['id'];
+        $data = $this->db->query("SELECT mapel_kelas.id_kelas, kelas.nama_kelas FROM `mapel_kelas` JOIN kelas ON kelas.id_kelas=mapel_kelas.id_kelas WHERE mapel_kelas.id_mapel = $id_mapel")->result_array();
 
         echo json_encode($data);
     }
