@@ -103,12 +103,21 @@
                                   <?php 
                                   $no = 1;
                                   foreach ($siswa as $peserta) :
+
+                                    //cek 
+                                    $cek = $this->db->query("SELECT siswa.nisn FROM `siswa` JOIN nilai_uts ON nilai_uts.nisn=siswa.nisn JOIN nilai_ulangan_harian AS harian ON harian.nisn=siswa.nisn JOIN nilai_uas ON nilai_uas.nisn=siswa.nisn JOIN nilai_tugas ON nilai_tugas.nisn=siswa.nisn WHERE siswa.nisn =".$peserta['nisn'])->row_array();
+
+                                    if($cek > 0){
+                                      $aksi = '<a href="'.base_url('guru_kelas/nilai/update_nilai').'?nisn='.$peserta['nisn'].'&id_semester='.$_GET['semester'].'&id_mapel='.$_GET['mapel'].'" class="btn btn-sm btn-success update">Perbarui Nilai</a>';
+                                    }else{
+                                      $aksi = '<a href="'.base_url('guru_kelas/nilai/input_nilai').'?nisn='.$peserta['nisn'].'&id_semester='.$_GET['semester'].'&id_mapel='.$_GET['mapel'].'" class="btn btn-sm btn-primary update">Input Nilai</a>';
+                                    }
                                   ?>
                                     <tr>
                                       <td><?=$no++?></td>
                                       <td><?=$peserta['nisn']?></td>
                                       <td><?=ucwords($peserta['nama_siswa'])?></td>
-                                      <td><a href="<?=base_url('guru_kelas/nilai/input_nilai')?>?nisn=<?=$peserta['nisn']?>&id_semester=<?=$_POST['semester']?>&id_mapel=<?=$_POST['mapel']?>" target="_blank" id="<?=$peserta['nisn']?>" class="btn btn-sm btn-primary update">Input Nilai</a></td>
+                                      <td><?=$aksi?></td>
                                     </tr>
                                   <?php endforeach; ?>
                                  </tbody>

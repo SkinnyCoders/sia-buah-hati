@@ -66,7 +66,8 @@ class Jadwal extends CI_controller
         $data = [
             'title' => 'Perbarui Jadwal Guru',
             'guru' => $this->db->query("SELECT * FROM `tenaga_kependidikan` WHERE `hak_akses` = 'guru kelas' OR hak_akses = 'guru mapel'")->result_array(),
-            'jadwal' => $this->db->get_where('jadwal', ['id_jadwal' => $id])->row_array()
+            'jadwal' => $this->db->get_where('jadwal', ['id_jadwal' => $id])->row_array(),
+            'mapel' => $this->db->get('mapel')->result_array()
         ];
 
         $this->form_validation->set_rules('guru', 'Guru', 'required', ['required' => '{field} tidak boleh kosong']);

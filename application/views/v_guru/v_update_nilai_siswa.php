@@ -80,35 +80,35 @@
                                  <tr>
                                       <td>1</td>
                                       <td>Ulangan Harian</td>
-                                      <td><input type="text" class="form-control" name="tertulis_harian" placeholder="Masukkan Nilai Tertulis" value="<?=set_value('tertulis_harian')?>"> <small class="text-danger"><?=form_error('tertulis_harian')?></small></td>
-                                      <td><input type="text" class="form-control" name="lisan_harian" placeholder="Masukkan Nilai Lisan" value="<?=set_value('lisan_harian')?>"> <small class="text-danger"><?=form_error('lisan_harian')?></small></td>
-                                      <td><input type="text" class="form-control" name="praktek_harian" placeholder="Masukkan Nilai Praktek" value="<?=set_value('praktek_harian')?>"> <small class="text-danger"><?=form_error('praktek_harian')?></small></td>
+                                      <td><input type="text" class="form-control" name="tertulis_harian" placeholder="Masukkan Nilai Tertulis" value="<?=!empty($harian['nilai_tertulis'])?$harian['nilai_tertulis']:set_value('tertulis_harian')?>"> <small class="text-danger"><?=form_error('tertulis_harian')?></small></td>
+                                      <td><input type="text" class="form-control" name="lisan_harian" placeholder="Masukkan Nilai Lisan" value="<?=!empty($harian['nilai_lisan'])?$harian['nilai_lisan']:set_value('lisan_harian')?>"> <small class="text-danger"><?=form_error('lisan_harian')?></small></td>
+                                      <td><input type="text" class="form-control" name="praktek_harian" placeholder="Masukkan Nilai Praktek" value="<?=!empty($harian['nilai_praktek'])?$harian['nilai_praktek']:set_value('praktek_harian')?>"> <small class="text-danger"><?=form_error('praktek_harian')?></small></td>
                                     </tr>
                                     <tr>
                                       <td>2</td>
                                       <td>UTS</td>
-                                      <td><input type="text" class="form-control" name="tertulis_uts" placeholder="Masukkan Nilai Tertulis" value="<?=set_value('tertulis_uts')?>"> <small class="text-danger"><?=form_error('tertulis_uts')?></small></td>
-                                      <td><input type="text" class="form-control" name="lisan_uts" placeholder="Masukkan Nilai Lisan" value="<?=set_value('lisan_uts')?>"> <small class="text-danger"><?=form_error('lisan_uts')?></small></td>
-                                      <td><input type="text" class="form-control" name="praktek_uts" placeholder="Masukkan Nilai Praktek" value="<?=set_value('praktek_uts')?>"> <small class="text-danger"><?=form_error('praktek_uts')?></small></td>
+                                      <td><input type="text" class="form-control" name="tertulis_uts" placeholder="Masukkan Nilai Tertulis" value="<?=!empty($uts['nilai_tertulis'])?$uts['nilai_tertulis']:set_value('tertulis_uts')?>"> <small class="text-danger"><?=form_error('tertulis_uts')?></small></td>
+                                      <td><input type="text" class="form-control" name="lisan_uts" placeholder="Masukkan Nilai Lisan" value="<?=!empty($uts['nilai_lisan'])?$uts['nilai_lisan']:set_value('lisan_uts')?>"> <small class="text-danger"><?=form_error('lisan_uts')?></small></td>
+                                      <td><input type="text" class="form-control" name="praktek_uts" placeholder="Masukkan Nilai Praktek" value="<?=!empty($uts['nilai_praktek'])?$uts['nilai_praktek']:set_value('praktek_uts')?>"> <small class="text-danger"><?=form_error('praktek_uts')?></small></td>
                                     </tr>
                                     <tr>
                                       <td>3</td>
                                       <td>UAS</td>
-                                      <td><input type="text" class="form-control" name="tertulis_uas" placeholder="Masukkan Nilai Tertulis" value="<?=set_value('tertulis_uas')?>"> <small class="text-danger"><?=form_error('tertulis_uas')?></small></td>
-                                      <td><input type="text" class="form-control" name="lisan_uas" placeholder="Masukkan Nilai Lisan" value="<?=set_value('lisan_uas')?>"> <small class="text-danger"><?=form_error('lisan_uas')?></small></td>
-                                      <td><input type="text" class="form-control" name="praktek_uas" placeholder="Masukkan Nilai Praktek" value="<?=set_value('praktek_uas')?>"> <small class="text-danger"><?=form_error('praktek_uas')?></small></td>
+                                      <td><input type="text" class="form-control" name="tertulis_uas" placeholder="Masukkan Nilai Tertulis" value="<?=!empty($uas['nilai_tertulis'])?$uas['nilai_tertulis']:set_value('tertulis_uas')?>"> <small class="text-danger"><?=form_error('tertulis_uas')?></small></td>
+                                      <td><input type="text" class="form-control" name="lisan_uas" placeholder="Masukkan Nilai Lisan" value="<?=!empty($uas['nilai_lisan'])?$uas['nilai_lisan']:set_value('lisan_uas')?>"> <small class="text-danger"><?=form_error('lisan_uas')?></small></td>
+                                      <td><input type="text" class="form-control" name="praktek_uas" placeholder="Masukkan Nilai Praktek" value="<?=!empty($uas['nilai_praktek'])?$uas['nilai_praktek']:set_value('praktek_uas')?>"> <small class="text-danger"><?=form_error('praktek_uas')?></small></td>
                                     </tr>
                                     
                                     <tr>
                                       <td>4</td>
                                       <td>Tugas</td>
-                                      <td><input type="text" class="form-control" name="tertulis_tugas" placeholder="Masukkan Nilai Tertulis" value="<?=set_value('tertulis_tugas')?>"><small class="text-danger"><?=form_error('tertulis_tugas')?></small></td>
-                                      <td><input type="text" class="form-control" name="lisan_tugas" placeholder="Masukkan Nilai Lisan" value="<?=set_value('lisan_tugas')?>"><small class="text-danger"><?=form_error('lisan_tugas')?></small></td>
-                                      <td><input type="text" class="form-control" name="praktek_tugas" placeholder="Masukkan Nilai Praktek" value="<?=set_value('praktek_tugas')?>"><small class="text-danger"><?=form_error('praktek_tugas')?></small></td>
+                                      <td><input type="text" class="form-control" name="tertulis_tugas" placeholder="Masukkan Nilai Tertulis" value="<?=!empty($tugas['nilai_tertulis'])?$tugas['nilai_tertulis']:set_value('tertulis_tugas')?>"><small class="text-danger"><?=form_error('tertulis_tugas')?></small></td>
+                                      <td><input type="text" class="form-control" name="lisan_tugas" placeholder="Masukkan Nilai Lisan" value="<?=!empty($tugas['nilai_lisan'])?$tugas['nilai_lisan']:set_value('lisan_tugas')?>"><small class="text-danger"><?=form_error('lisan_tugas')?></small></td>
+                                      <td><input type="text" class="form-control" name="praktek_tugas" placeholder="Masukkan Nilai Praktek" value="<?=!empty($tugas['nilai_praktek'])?$tugas['nilai_praktek']:set_value('praktek_tugas')?>"><small class="text-danger"><?=form_error('praktek_tugas')?></small></td>
                                     </tr>
                                  </tbody>
                                </table>
-                               <button class="btn btn-primary float-right" style="width: 200px;" type="submit">Simpan Nilai</button>
+                               <button class="btn btn-primary float-right" style="width: 200px;" type="submit">Perbarui Nilai</button>
                               </div>
                             </div>
                             </form>

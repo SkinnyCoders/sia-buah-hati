@@ -53,20 +53,26 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label >Kelas <span class="text-danger">*</span></label>
-                                <select name="kelas" id="kelas" class="form-control select2bs4" data-placeholder="Pilih Mengajar di Kelas mana">
+                                <label >Mata Pelajaran <span class="text-danger">*</span></label>
+                                <select name="mapel" id="mapel" class="form-control select2bs4" data-placeholder="Pilih Mata Pelajaran">
                                     <option></option>
-                                   
+                                    <?php 
+                                    foreach($mapel AS $g) :
+                                    ?>
+                                    <option value="<?=$g['id_mapel']?>" <?php if($jadwal['id_mapel'] == $g['id_mapel']){ echo 'selected'; }?>><?=ucwords($g['nama_mapel'])?></option>
+                                    <?php
+                                    endforeach;
+                                    ?>
                                 </select>
                                 <small class="text-danger mt-2"><?= form_error('status') ?></small>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label >Mata Pelajaran <span class="text-danger">*</span></label>
-                                <select name="mapel" id="mapel" class="form-control select2bs4" data-placeholder="Pilih Mata Pelajaran">
+                                <label >Kelas <span class="text-danger">*</span></label>
+                                <select name="kelas" id="kelas" class="form-control select2bs4" data-placeholder="Pilih Mengajar di Kelas mana">
                                     <option></option>
-                                    
+                                   
                                 </select>
                                 <small class="text-danger mt-2"><?= form_error('status') ?></small>
                             </div>
@@ -193,7 +199,7 @@
 
   <script>
       $(document).ready(function(){
-        var id_jurusan = $('#guru').val();
+        var id_jurusan = $('#mapel').val();
         var id_kelas = <?=$jadwal['id_kelas']?>;
         var id_mapel = <?=$jadwal['id_mapel']?>;
 
@@ -221,35 +227,35 @@
             }
         })
 
-        $.ajax({
-            type : "POST",
-            url : "<?= base_url('tatausaha/jadwal/get_mapel')?>",
-            data : {'id' : id_kelas},
-            dataType : "json",
-            success : function(data){
+        // $.ajax({
+        //     type : "POST",
+        //     url : "<?= base_url('tatausaha/jadwal/get_mapel')?>",
+        //     data : {'id' : id_kelas},
+        //     dataType : "json",
+        //     success : function(data){
 
-                var html = '';
-                var i;
+        //         var html = '';
+        //         var i;
 
-                for(i = 0; i<data.length; i++){
-                    if(data[i].id_mapel == id_mapel){
-                        var select = 'selected'; 
-                    }else{
-                        var select = '';
-                    }
+        //         for(i = 0; i<data.length; i++){
+        //             if(data[i].id_mapel == id_mapel){
+        //                 var select = 'selected'; 
+        //             }else{
+        //                 var select = '';
+        //             }
 
-                    html += '<option value="'+data[i].id_mapel+'" '+select+'>'+data[i].nama_mapel+'</option>'
-                }
+        //             html += '<option value="'+data[i].id_mapel+'" '+select+'>'+data[i].nama_mapel+'</option>'
+        //         }
 
-                $('#mapel').html(html);
+        //         $('#mapel').html(html);
 
-            }
-        })
+        //     }
+        // })
       })
 
 
-    $('#guru').on('change', function(){
-        var id_jurusan = $('#guru').val();
+    $('#mapel').on('change', function(){
+        var id_jurusan = $('#mapel').val();
 
         $.ajax({
             type : "POST",
@@ -271,27 +277,27 @@
         })
     });
 
-    $('#kelas').on('change', function(){
-        var id_jurusan = $('#kelas').val();
+    // $('#kelas').on('change', function(){
+    //     var id_jurusan = $('#kelas').val();
 
-        $.ajax({
-            type : "POST",
-            url : "<?= base_url('tatausaha/jadwal/get_mapel')?>",
-            data : {'id' : id_jurusan},
-            dataType : "json",
-            success : function(data){
+    //     $.ajax({
+    //         type : "POST",
+    //         url : "<?= base_url('tatausaha/jadwal/get_mapel')?>",
+    //         data : {'id' : id_jurusan},
+    //         dataType : "json",
+    //         success : function(data){
 
-                var html = '';
-                var i;
+    //             var html = '';
+    //             var i;
 
-                for(i = 0; i<data.length; i++){
-                    html += '<option value="'+data[i].id_mapel+'">'+data[i].nama_mapel+'</option>'
-                }
+    //             for(i = 0; i<data.length; i++){
+    //                 html += '<option value="'+data[i].id_mapel+'">'+data[i].nama_mapel+'</option>'
+    //             }
 
-                $('#mapel').html(html);
+    //             $('#mapel').html(html);
 
-            }
-        })
-    });
+    //         }
+    //     })
+    // });
   </script>
   
