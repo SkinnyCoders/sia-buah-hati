@@ -182,7 +182,7 @@
               </li>
         <?php } else if ($this->session->userdata('role') == 2) { ?>
           <li class="nav-item">
-            <a href="<?= base_url('guru/dashboard') ?>" class="nav-link <?= active('dashboard')?>">
+            <a href="<?= base_url('guru_kelas/dashboard') ?>" class="nav-link <?= active('dashboard')?>">
               <i class="nav-icon fa fa-home"></i>
               <p>
                 Dashboard
@@ -190,10 +190,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('guru/siswa') ?>" class="nav-link <?= active('siswa')?>">
-              <i class="nav-icon fa fa-users"></i>
+            <a href="<?= base_url('guru_kelas/jadwal') ?>" class="nav-link <?= active('jadwal')?>">
+              <i class="nav-icon fa fa-calendar"></i>
               <p>
-                Data Siswa
+                Jadwal Mengajar
               </p>
             </a>
           </li>

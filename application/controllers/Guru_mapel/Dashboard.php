@@ -13,7 +13,7 @@ class Dashboard extends CI_controller
     {
         parent::__construct();
         //login cek and authentication
-        getAuthGuruKelas();
+        getAuthGuruMapel();
         $this->load->model('m_admin');
         $this->load->model('m_pengumuman');
     }

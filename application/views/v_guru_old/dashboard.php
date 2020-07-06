@@ -9,7 +9,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Dashboard Pegawai</li>
+              <li class="breadcrumb-item active">Dashboard Admin</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -17,70 +17,53 @@
     </div>
     <!-- /.content-header -->
 
-    
-
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-        <div class="col-lg-3 col-xs-6">
+          <div class="col-lg-4 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-blue">
               <div class="inner">
-                <h3><?=$total[0]?></h3>
+                <h3>123</h3>
 
-                <p>Siswa Mendaftar</p>
+                <p>Data Tenaga Kependidikan</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="ion ion-person-stalker"></i>
               </div>
-              
+              <a href="<?= base_url('admin/lowongan') ?>" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
+          <div class="col-lg-4 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-green">
               <div class="inner">
-                <h3><?=$total[1]?></h3>
+                <h3>12</h3>
 
-                <p> DIterima</p>
+                <p>Mapel</p>
               </div>
               <div class="icon">
-                <i class="ion ion-checkmark"></i>
+                <i class="ion ion-android-bookmark"></i>
               </div>
-             
+              <a href="<?= base_url('admin/event') ?>" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
+          <div class="col-lg-4 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-yellow">
               <div class="inner">
-                <h3><?=$total[3]?></h3>
+                <h3>22</h3>
 
-                <p> Belum Dikonfirmasi</p>
+                <p>Kelas</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bookmark"></i>
+                <i class="ion ion-cube"></i>
               </div>
-              
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-red">
-              <div class="inner">
-                <h3><?=$total[2]?></h3>
-
-                <p> Tidak Diterima</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-close"></i>
-              </div>
-              
+              <a href="<?= base_url('admin/pesan') ?>" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

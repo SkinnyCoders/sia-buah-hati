@@ -156,7 +156,20 @@ class Absensi extends CI_controller
             if($status == 'hadir'){
                 $update = $this->db->query("DELETE FROM absensi WHERE `nisn` = $nisn AND `tanggal_absen` = '$tgl'");
             }else{
-                $update = $this->db->query("UPDATE `absensi` SET `status`= '$status',`keterangan`= '$ket' WHERE `nisn` = $nisn AND `tanggal_absen` = '$tgl'");
+                //cek sudah ada data blm
+                $cek = $this->db->get_where('absensi', ['nisn' => $nisn, 'tanggal_absen' => $tgl])->num_rows();
+                if($cek > 0){
+                    $update = $this->db->query("UPDATE `absensi` SET `status`= '$status',`keterangan`= '$ket' WHERE `nisn` = $nisn AND `tanggal_absen` = '$tgl'");
+                }else{
+                    $data = [
+                        'nisn' => $nisn,
+                        'tanggal_absen' => $tgl,
+                        'status' => $status,
+                        'keterangan' => $ket
+                    ];
+
+                    $update = $this->db->insert('absensi', $data);
+                }
             }
 
             if($update){
