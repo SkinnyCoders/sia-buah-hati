@@ -105,7 +105,7 @@
                                   foreach ($siswa as $peserta) :
 
                                     //cek 
-                                    $cek = $this->db->query("SELECT siswa.nisn FROM `siswa` JOIN nilai_uts ON nilai_uts.nisn=siswa.nisn JOIN nilai_ulangan_harian AS harian ON harian.nisn=siswa.nisn JOIN nilai_uas ON nilai_uas.nisn=siswa.nisn JOIN nilai_tugas ON nilai_tugas.nisn=siswa.nisn WHERE siswa.nisn =".$peserta['nisn'])->row_array();
+                                    $cek = $this->db->query("SELECT siswa.nisn FROM `siswa` JOIN nilai_uts ON nilai_uts.nisn=siswa.nisn JOIN nilai_ulangan_harian AS harian ON harian.nisn=siswa.nisn JOIN nilai_uas ON nilai_uas.nisn=siswa.nisn JOIN nilai_tugas ON nilai_tugas.nisn=siswa.nisn WHERE harian.id_kelas = ".$_GET['kelas']." AND harian.id_semester = ".$_GET['semester']." AND harian.id_mapel = ".$_GET['mapel']." AND siswa.nisn =".$peserta['nisn'])->row_array();
 
                                     if($cek > 0){
                                       $aksi = '<a href="'.base_url('guru_kelas/nilai/update_nilai').'?nisn='.$peserta['nisn'].'&id_semester='.$_GET['semester'].'&id_mapel='.$_GET['mapel'].'" class="btn btn-sm btn-success update">Perbarui Nilai</a>';
