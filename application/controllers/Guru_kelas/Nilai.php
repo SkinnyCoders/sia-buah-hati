@@ -229,7 +229,7 @@ class Nilai extends CI_controller
                 'nilai_praktek' => $this->input->post('praktek_tugas')
             ];
 
-            if($this->db->update('nilai_ulangan_harian', $data_harian, ['nisn' => $nisn]) && $this->db->update('nilai_uts', $data_uts, ['nisn' => $nisn]) && $this->db->update('nilai_uas', $data_uas, ['nisn' => $nisn]) && $this->db->update('nilai_tugas', $data_tugas, ['nisn' => $nisn])){
+            if($this->db->update('nilai_ulangan_harian', $data_harian, ['nisn' => $nisn, 'id_semester' => $id_semester, 'id_mapel' => $id_mapel, 'id_kelas' => $id_kelas]) && $this->db->update('nilai_uts', $data_uts, ['nisn' => $nisn, 'id_semester' => $id_semester, 'id_mapel' => $id_mapel, 'id_kelas' => $id_kelas]) && $this->db->update('nilai_uas', $data_uas, ['nisn' => $nisn, 'id_semester' => $id_semester, 'id_mapel' => $id_mapel, 'id_kelas' => $id_kelas]) && $this->db->update('nilai_tugas', $data_tugas, ['nisn' => $nisn, 'id_semester' => $id_semester, 'id_mapel' => $id_mapel, 'id_kelas' => $id_kelas])){
                 $this->session->set_flashdata('msg_success', 'Data nilai berhasil diinputkan');
                 redirect('guru_kelas/nilai?mapel='.$id_mapel.'&kelas='.$id_kelas.'&semester='.$id_semester);
             }else{
