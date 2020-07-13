@@ -175,7 +175,7 @@
             </a>
           </li> -->
           <li class="nav-item">
-                <a href="<?= base_url('front/auth/logout') ?>" class="nav-link">
+                <a href="<?= base_url('front/administrator/logout') ?>" class="nav-link">
                   <i class="fas fa-arrow-circle-right nav-icon"></i>
                   <p>Keluar</p>
                 </a>
@@ -214,6 +214,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('guru_kelas/naik_kelas') ?>" class="nav-link <?= active('naik_kelas')?>">
+              <i class="nav-icon fa fa-check"></i>
+              <p>
+                Kenaikan Kelas
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('guru_kelas/raport') ?>" class="nav-link <?= active('raport')?>">
               <i class="nav-icon fa fa-check"></i>
               <p>
@@ -244,7 +252,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('front/auth/logout') ?>" class="nav-link">
+                <a href="<?= base_url('front/administrator/logout') ?>" class="nav-link">
                   <i class="fas fa-arrow-circle-right nav-icon"></i>
                   <p>Keluar</p>
                 </a>

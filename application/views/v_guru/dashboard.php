@@ -117,18 +117,26 @@
                     </tr>
                   </thead>
                   <tbody>
+                  <?php
+                  if(!empty($jadwal)) :
+                  foreach($jadwal AS $j) :
+                  ?>
                     <tr>
-                      <td>Kelas 1</td>
-                      <td>Bahasa</td>
-                      <td>07:30 WIB</td>
-                      <td>08:50 WIB</td>
+                      <td><?=ucwords($j['nama_kelas'])?></td>
+                      <td><?=ucwords($j['nama_mapel'])?></td>
+                      <td><?=$j['jam_mulai']?> WIB</td>
+                      <td><?=$j['jam_akhir']?> WIB</td>
                     </tr>
+                    <?php
+                    endforeach;
+                    else :
+                    ?>
                     <tr>
-                      <td>Kelas 3</td>
-                      <td>Bahasa</td>
-                      <td>07:30 WIB</td>
-                      <td>08:50 WIB</td>
+                      <td colspan="4" class="text-center"> -- Belum Ada jadwal --</td>
                     </tr>
+                    <?php
+                    endif;
+                    ?>
                   </tbody>
                 </table>
               </div>
