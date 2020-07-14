@@ -56,3 +56,17 @@ function getAuthKepsek()
         return false;
     }
 }
+
+function getAuthSiswa()
+{
+    $CI = &get_instance();
+    if ($CI->session->userdata('is_login') !== 'punten') {
+        $CI->session->set_flashdata('msg_failed', 'Maaf, Harus login terlebih dahulu!');
+        redirect('/');
+        return false;
+    }elseif($CI->session->userdata('nama_role') !== 'siswa'){
+        $CI->session->set_flashdata('msg_failed', 'Maaf, Anda tidak memiliki akses ke halaman!');
+        redirect('siswa/dashboard');
+        return false;
+    }
+}

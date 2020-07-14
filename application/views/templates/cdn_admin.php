@@ -19,3 +19,5 @@
 
 <!-- Select2 -->
 <script src="<?= base_url('assets/plugins/select2/js/select2.full.min.js') ?>"></script>
+
+<script src="<?= base_url('assets/plugins/daterangepicker/daterangepicker.js') ?>"></script>

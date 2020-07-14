@@ -22,6 +22,7 @@ class Naik_kelas extends CI_controller
     {
         $id_gtk = $this->session->userdata('id_gtk');
         $data['title'] = 'Kenaikan Kelas';
+        $data['nama_kelas'] = $this->db->query("SELECT * FROM `guru_kelas` JOIN kelas ON kelas.id_kelas=guru_kelas.id_kelas WHERE `id_gtk` = $id_gtk")->row_array();
         $data['kelas'] = $this->db->get('kelas')->result_array();
         $data['siswa'] = $this->m_gtk->getSiswaNaikKelas($id_gtk);
 

@@ -27,7 +27,7 @@
                       <!-- general form elements -->
                       <div class="card card-default ">
                           <div class="card-header">
-                              <h3 class="card-title"><i class="far fa-dollar"></i>Data Siswa Pada Kelas</h3> <br>
+                              <h3 class="card-title"><i class="far fa-dollar"></i>Data Siswa Pada Kelas <?=$nama_kelas['nama_kelas']?></h3> <br>
                               <small>Pilih siswa dibawah ini untuk naik kelas</small>
                           </div>
                           <!-- /.card-header -->

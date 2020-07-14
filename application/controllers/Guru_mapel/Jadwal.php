@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * 
  */
-class Dashboard extends CI_controller
+class Jadwal extends CI_controller
 {
     /**
      * Constructs a new instance.
@@ -14,15 +14,15 @@ class Dashboard extends CI_controller
         parent::__construct();
         //login cek and authentication
         getAuthGuruMapel();
-        $this->load->model('m_admin');
-        $this->load->model('m_pengumuman');
+        $this->load->model('m_gtk');
     }
 
     public function index()
     {
-        $data['title'] = 'Dashboard Guru Mapel';
-        $data['pengumumans'] = $this->m_pengumuman->getPengumuman();
-        getViews($data, 'v_guru/dashboard');
+        $id_gtk = $this->session->userdata('id_gtk');
+        $data['title'] = 'Jadwal Mengajar';
+        $data['jadwal'] = $this->m_gtk->getJadwalGtk($id_gtk);
+        getViews($data, 'v_guru/v_jadwal');
     }
 
 }

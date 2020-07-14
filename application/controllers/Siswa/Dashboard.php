@@ -13,20 +13,22 @@ class Dashboard extends CI_controller
     {
         parent::__construct();
         //login cek and authentication
-        getAuthGuruKelas();
+        getAuthSiswa();
         $this->load->model('m_admin');
         $this->load->model('m_pengumuman');
+        $this->load->model('m_siswa');
     }
 
     public function index()
     {
         date_default_timezone_set('Asia/Jakarta');
         $hari = $this->hari(date('l'));
-        $data['title'] = 'Dashboard Guru Kelas';
-        $id_gtk = $this->session->userdata('id_gtk');
+        $nisn = $this->session->userdata('nisn');
+        $data['title'] = 'Dashboard';
+        $data['jadwal'] = $this->db->query("SELECT * FROM `jadwal` JOIN kelas ON kelas.id_kelas=jadwal.id_kelas JOIN mapel ON mapel.id_mapel=jadwal.id_mapel JOIN siswa ON siswa.id_kelas=jadwal.id_kelas WHERE siswa.nisn = $nisn AND jadwal.hari = '$hari'")->result_array();
         $data['pengumumans'] = $this->m_pengumuman->getPengumuman();
-        $data['jadwal'] = $this->db->query("SELECT * FROM `jadwal` JOIN mapel ON mapel.id_mapel=jadwal.id_mapel JOIN kelas ON kelas.id_kelas=jadwal.id_kelas WHERE jadwal.id_gtk = $id_gtk AND jadwal.hari = '$hari'")->result_array();
-        getViews($data, 'v_guru/dashboard');
+        $data['absensi'] = $this->m_siswa->getAbsensi($nisn, date('Y-m-d'));
+        getViews($data, 'v_siswa/dashboard');
     }
 
     public function hari($hari){

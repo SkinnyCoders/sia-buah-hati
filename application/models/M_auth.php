@@ -14,6 +14,15 @@ class M_auth extends CI_Model
         return $this->db->get()->row_array();
     }
 
+    public function cekUserSiswa($email){
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->where('username', $email);
+        $this->db->or_where('nisn', $email);
+        return $this->db->get()->row_array();
+    }
+    
+
     public function cekUserGuru($email){
         $this->db->select('*');
         $this->db->from('tenaga_kependidikan');
